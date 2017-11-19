@@ -11,8 +11,5 @@ platform :ios, '9.0'
 
 target 'TestLib' do
 pod 'DBUtils'
-
-# or just only mapper pod 'DBUtils\EntityMapper'
-# or just only json export util pod 'DBUtils\JsonEntityExporter'
 end
 ```
