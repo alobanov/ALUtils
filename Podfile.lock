@@ -1,12 +1,8 @@
 PODS:
   - DATAStack (8.0.1)
   - DBUtils (0.1.0):
-    - DBUtils/Utils (= 0.1.0)
-  - DBUtils/EntityMapper (0.1.0)
-  - DBUtils/JsonEntityExporter (0.1.0)
-  - DBUtils/Utils (0.1.0):
-    - DBUtils/EntityMapper
-    - DBUtils/JsonEntityExporter
+    - DBUtils/Core (= 0.1.0)
+  - DBUtils/Core (0.1.0)
 
 DEPENDENCIES:
   - DATAStack
@@ -18,7 +14,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   DATAStack: 743c6f0f06a8141c2d42b31f293ba3a056a7d4ba
-  DBUtils: 6fee4549ba8487b800da3b124c267873edbafb13
+  DBUtils: f418fb6488c74267ac3c0bfe3b7e481657daed1f
 
 PODFILE CHECKSUM: 2a4930a88800d9d9e0a455ebd03d63e478515812
 

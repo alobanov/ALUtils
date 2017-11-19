@@ -9,8 +9,18 @@
 import Foundation
 import CoreData
 
-extension NSPropertyDescription {  
-  func customKey() -> String? {
+public extension NSRelationshipDescription {
+  public func relationCustomKey() -> String? {
+    guard let info = self.userInfo else {
+      return nil
+    }
+    
+    return info[Constant.CustomExportKey] as? String
+  }
+}
+
+public extension NSPropertyDescription {  
+  public func customKey() -> String? {
     guard let info = self.userInfo else {
       return nil
     }
@@ -18,7 +28,7 @@ extension NSPropertyDescription {
     return info[Constant.CustomExportKey] as? String
   }
   
-  func shouldExportAttribute() -> Bool {
+  public func shouldExportAttribute() -> Bool {
     guard let info = self.userInfo else {
       return false
     }
@@ -28,7 +38,7 @@ extension NSPropertyDescription {
     return shouldExportAttribute;
   }
   
-  func customTransformerName() -> String? {
+  public func customTransformerName() -> String? {
     guard let info = self.userInfo else {
       return nil
     }

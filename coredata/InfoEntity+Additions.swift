@@ -35,7 +35,7 @@ public class InfoEntity: NSManagedObject, NSManagedObjectMappable {
     
     self.date = object.string(by: "date")
     self.floatValue = object.float(by: "floatValue") ?? 0
-    self.doubleValue = object.double(by: "doubleValue") ?? 0
+    self.doubleValue = object.double(by: "double_value") ?? 0
     self.binaryValue = object.data(by: "binaryValue")
     self.decimalValue = object.decimal(by: "decimalValue")
   }

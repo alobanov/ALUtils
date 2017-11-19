@@ -211,12 +211,12 @@ public extension NSManagedObject {
       if let pd = propertyDescription as? NSAttributeDescription {
         if pd.shouldExportAttribute() {
           let value = self.valueFor(attributeDescription: pd,
-                                                        dateFormatter: dateFormatter,
-                                                        relationshipType: relationshipType)
+                                    dateFormatter: dateFormatter,
+                                    relationshipType: relationshipType)
           
           let remoteKey = self.remoteKey(attributeDescription: pd,
-                                                                relationshipType: relationshipType,
-                                                                inflectionType: inflectionType)
+                                         relationshipType: relationshipType,
+                                         inflectionType: inflectionType)
           managedObjectAttributes[remoteKey] = value;
         }
       } else if (propertyDescription is NSRelationshipDescription && relationshipType != .none) {
@@ -228,11 +228,14 @@ public extension NSManagedObject {
             let relationships = self.value(forKey: relationshipName)
             if let rlship = relationships {
               let isToOneRelationship = (!(relationships is NSSet) && !(relationships is NSOrderedSet))
+              
+              let rn = relationshipDescription.relationCustomKey() ?? relationshipDescription.name
+              
               if (isToOneRelationship) {
-                let attributesForToOneRelationship = self.attributesForToOne(relationship: rlship as! NSManagedObject, relationshipName: relationshipName, relationshipType: relationshipType, parent: self, dateFormatter: dateFormatter, inflectionType: inflectionType)
+                let attributesForToOneRelationship = self.attributesForToOne(relationship: rlship as! NSManagedObject, relationshipName: rn, relationshipType: relationshipType, parent: self, dateFormatter: dateFormatter, inflectionType: inflectionType)
                 managedObjectAttributes.merge(with: attributesForToOneRelationship)
               } else {
-                let attributesForToManyRelationship = self.attributesForToMany(relationships: rlship as! NSSet, relationshipName: relationshipName, relationshipType: relationshipType, parent: self, dateFormatter: dateFormatter, inflectionType: inflectionType)
+                let attributesForToManyRelationship = self.attributesForToMany(relationships: rlship as! NSSet, relationshipName: rn, relationshipType: relationshipType, parent: self, dateFormatter: dateFormatter, inflectionType: inflectionType)
                 managedObjectAttributes.merge(with: attributesForToManyRelationship)
               }
             }

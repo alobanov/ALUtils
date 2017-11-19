@@ -11,7 +11,11 @@
                 <entry key="exportKey" value="destroy"/>
             </userInfo>
         </attribute>
-        <relationship name="infos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="InfoEntity" inverseName="ability" inverseEntity="InfoEntity" syncable="YES"/>
+        <relationship name="infoItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="InfoEntity" inverseName="ability" inverseEntity="InfoEntity" syncable="YES">
+            <userInfo>
+                <entry key="exportKey" value="info_items"/>
+            </userInfo>
+        </relationship>
         <userInfo>
             <entry key="exportKey" value="destroy"/>
         </userInfo>
@@ -52,10 +56,14 @@
             </userInfo>
         </attribute>
         <attribute name="decimalValue" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="doubleValue" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="doubleValue" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES">
+            <userInfo>
+                <entry key="exportKey" value="double_value"/>
+            </userInfo>
+        </attribute>
         <attribute name="floatValue" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="ability" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AbilityEntity" inverseName="infos" inverseEntity="AbilityEntity" syncable="YES"/>
+        <relationship name="ability" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AbilityEntity" inverseName="infoItems" inverseEntity="AbilityEntity" syncable="YES"/>
         <userInfo>
             <entry key="key" value="value"/>
         </userInfo>

@@ -9,12 +9,6 @@
 import Foundation
 import CoreData
 
-//public typealias JSONDictionary = [String: Any]
-//public typealias JSONArrayDictionary = [[String: Any]]
-//
-//public typealias DictionaryAnyObject = [String: AnyObject]
-//public typealias DictionaryArray = [[String: AnyObject]]
-
 public protocol NSManagedObjectMappable where Self:NSManagedObject {
   associatedtype Fields
   associatedtype Relations
@@ -22,7 +16,7 @@ public protocol NSManagedObjectMappable where Self:NSManagedObject {
   func map(object: [String: Any], context: NSManagedObjectContext)
 }
 
-final public class EntityMapper<BaseType: NSManagedObjectMappable> {
+public class EntityMapper<BaseType: NSManagedObjectMappable> {
   public static func map<T: NSManagedObjectMappable>(type:T.Type, object: [String: Any], context: NSManagedObjectContext) -> T {
     let key = T.primaryKey()
     let objects: [T] = NSManagedObject.createOrUpdateEntities(context: context, pkKey: key, pkValue: object[key] as? NSObject)

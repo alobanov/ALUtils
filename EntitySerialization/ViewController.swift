@@ -43,13 +43,13 @@ class ViewController: UIViewController {
     // Do any additional setup after loading the view, typically from a nib.
     
     let d: [  String: Any] = ["id": 5, "name": "Lotro Bregich",
-                             "infos":  [["id": 4, "boolValue": false,
+                             "info_items":  [["id": 4, "boolValue": false,
                        "dateValue": "2012-10-11T23:14:00+05:00", "floatValue": 3.34,
-                       "doubleValue": 3.23421, "binaryValue": NSNull(), "decimalValue": 43.3,
+                       "double_value": 3.23421, "binaryValue": NSNull(), "decimalValue": 43.3,
                        "date": "2012-10-11T23:14:00+00:00"],
                       ["id": 2, "boolValue": true,
                        "dateValue": "2012-10-11T23:14:00+05:00", "floatValue": 3.123456789,
-                       "doubleValue": 3.123456789, "binaryValue": NSNull(), "decimalValue": 43.123456789,
+                       "double_value": 3.123456789, "binaryValue": NSNull(), "decimalValue": 43.123456789,
                        "date": "2012-10-11T23:14:00+00:00"]]]
 
     

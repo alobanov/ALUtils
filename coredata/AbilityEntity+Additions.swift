@@ -18,7 +18,7 @@ public class AbilityEntity: NSManagedObject, NSManagedObjectMappable {
   }
   
   public struct Relations {
-    static let infos = "infos"
+    static let infos = "infoItems"
   }
   
   public static func primaryKey() -> String {
@@ -31,9 +31,9 @@ public class AbilityEntity: NSManagedObject, NSManagedObjectMappable {
     
     let mapper = EntityMapper<AbilityEntity>(context: context)
     if let infos = mapper.mapRelationToMany(relation: Relations.infos, type: InfoEntity.self, object: object) {
-      self.infos = NSSet(array: infos)
+      self.infoItems = NSSet(array: infos)
     } else {
-      self.infos = nil
+      self.infoItems = nil
     }
   }
 }
