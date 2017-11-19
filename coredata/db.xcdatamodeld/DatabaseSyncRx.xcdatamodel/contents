@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13533" systemVersion="17B48" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="AbilityEntity" representedClassName="AbilityEntity" syncable="YES" codeGenerationType="category">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES">
+            <userInfo>
+                <entry key="exportKey" value="xaxaxaBeach"/>
+            </userInfo>
+        </attribute>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="exportKey" value="destroy"/>
+            </userInfo>
+        </attribute>
+        <relationship name="infos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="InfoEntity" inverseName="ability" inverseEntity="InfoEntity" syncable="YES"/>
+        <userInfo>
+            <entry key="exportKey" value="destroy"/>
+        </userInfo>
+    </entity>
+    <entity name="CharacterEntity" representedClassName="CharacterEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="realName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="abilities" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AbilityEntity" syncable="YES"/>
+        <relationship name="info" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="InfoEntity" syncable="YES"/>
+        <relationship name="universe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UniverseEntity" inverseName="characters" inverseEntity="UniverseEntity" syncable="YES"/>
+    </entity>
+    <entity name="EnemyEntity" representedClassName="EnemyEntity" parentEntity="CharacterEntity" syncable="YES" codeGenerationType="class">
+        <relationship name="heroes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HeroEntity" inverseName="enemies" inverseEntity="HeroEntity" syncable="YES">
+            <userInfo>
+                <entry key="sync.nonExportable" value="true"/>
+            </userInfo>
+        </relationship>
+    </entity>
+    <entity name="HeroEntity" representedClassName="HeroEntity" parentEntity="CharacterEntity" syncable="YES" codeGenerationType="class">
+        <relationship name="enemies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EnemyEntity" inverseName="heroes" inverseEntity="EnemyEntity" syncable="YES">
+            <userInfo>
+                <entry key="sync.nonExportable" value="true"/>
+            </userInfo>
+        </relationship>
+    </entity>
+    <entity name="InfoEntity" representedClassName="InfoEntity" syncable="YES" codeGenerationType="category">
+        <attribute name="binaryValue" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="boolValue" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="String" valueTransformerName="StringToDateTransformer" syncable="YES">
+            <userInfo>
+                <entry key="exportTransformer111" value="StringToDateTransformer"/>
+            </userInfo>
+        </attribute>
+        <attribute name="dateValue" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES">
+            <userInfo>
+                <entry key="exportTransformer" value="DateToStringTransformer"/>
+            </userInfo>
+        </attribute>
+        <attribute name="decimalValue" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="doubleValue" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="floatValue" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="ability" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AbilityEntity" inverseName="infos" inverseEntity="AbilityEntity" syncable="YES"/>
+        <userInfo>
+            <entry key="key" value="value"/>
+        </userInfo>
+    </entity>
+    <entity name="UniverseEntity" representedClassName="UniverseEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="characters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CharacterEntity" inverseName="universe" inverseEntity="CharacterEntity" syncable="YES">
+            <userInfo>
+                <entry key="sync.nonExportable" value="true"/>
+            </userInfo>
+        </relationship>
+    </entity>
+    <elements>
+        <element name="AbilityEntity" positionX="-299" positionY="342" width="128" height="90"/>
+        <element name="CharacterEntity" positionX="-578" positionY="78" width="128" height="135"/>
+        <element name="EnemyEntity" positionX="-101" positionY="171" width="128" height="58"/>
+        <element name="HeroEntity" positionX="-362" positionY="45" width="128" height="60"/>
+        <element name="InfoEntity" positionX="-522" positionY="207" width="128" height="180"/>
+        <element name="UniverseEntity" positionX="-738" positionY="279" width="128" height="90"/>
+    </elements>
+</model>
