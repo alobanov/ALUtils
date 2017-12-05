@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-extension Dictionary {
+public extension Dictionary {
   func setOrUpdate(value: Any, path: String) -> [String: Any] {
     let keys = path.components(separatedBy: ".")
     var json = JSON(self)
