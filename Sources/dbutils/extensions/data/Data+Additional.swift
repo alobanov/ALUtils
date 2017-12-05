@@ -18,7 +18,7 @@ public extension Data {
   }
   
   func toJSONArray() throws -> DictionaryArray? {
-    guard let json = try JSONSerialization.jsonObject(with: self, options: .mutableContainers) as? DictionaryArray else {
+    guard let array = try JSONSerialization.jsonObject(with: self, options: .mutableContainers) as? DictionaryArray else {
       throw NSError.define(description: "NSData could not serialized to JSON")
     }
     
