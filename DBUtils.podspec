@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name                  = "DBUtils"
-    s.version               = "0.1.1"
+    s.version               = "0.1.2"
     s.summary               = "Database utils for Coredata"
     s.description           = <<-DESC
     Database utils for Coredata
@@ -17,11 +17,24 @@ Pod::Spec.new do |s|
     s.ios.deployment_target = '9.0'
 
     s.default_subspec = "Core"
-    s.source_files = 'Sources/**/*.swift'
+    s.source_files = 'Sources/dbutils/**/*.swift'
 
   s.subspec "Core" do |ss|
-    ss.source_files  = "Sources/**/*.swift"
+    ss.source_files  = "Sources/dbutils/**/*.swift"
     ss.framework  = "Foundation"
     ss.framework  = "CoreData"
+  end
+
+  s.subspec "Usefull" do |ss|
+    ss.source_files = "Sources/usefull/**/*.swift"
+    ss.dependency 'RxSwift', '~> 3'
+    ss.dependency 'SwiftyJSON'
+    ss.dependency 'ObjectMapper', '~> 2.2.7'
+  end
+
+  s.subspec "RxCoredataProvider" do |ss|
+    ss.source_files = "Sources/coredataProvider/**/*.swift"
+    ss.dependency "DBUtils/Usefull"
+    ss.dependency 'DATAStack'
   end
 end

@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension String {
+public extension String {
   func toSnakeCase() -> String {
     let pattern = "([a-z0-9])([A-Z])"
     var result = self

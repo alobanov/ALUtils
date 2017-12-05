@@ -8,7 +8,7 @@
 
 import Foundation
 import CoreData
-import DBUtils
+//import DBUtils
 
 @objc(InfoEntity)
 public class InfoEntity: NSManagedObject, NSManagedObjectMappable {

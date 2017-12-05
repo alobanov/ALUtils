@@ -1,14 +1,14 @@
 //
-//  Dictionary.swift
+//  Dictionary+Additions.swift
 //  EntitySerialization
 //
-//  Created by Lobanov Aleksey on 17/11/2017.
+//  Created by Lobanov Aleksey on 05.12.2017.
 //  Copyright © 2017 Lobanov Aleksey. All rights reserved.
 //
 
 import Foundation
 
-extension Dictionary {
+public extension Dictionary {
   mutating func merge(with dictionary: Dictionary) {
     dictionary.forEach { updateValue($1, forKey: $0) }
   }
@@ -17,6 +17,22 @@ extension Dictionary {
     var copy = self
     dictionary.forEach { copy.updateValue($1, forKey: $0) }
     return copy
+  }
+  
+  func nullKeyRemoval() -> [AnyHashable: Any] {
+    var dict: [AnyHashable: Any] = self
+    
+    let keysToRemove = dict.keys.filter { dict[$0] is NSNull }
+    let keysToCheck = dict.keys.filter({ dict[$0] is Dictionary })
+    for key in keysToRemove {
+      dict.removeValue(forKey: key)
+    }
+    for key in keysToCheck {
+      if let valueDict = dict[key] as? [AnyHashable: Any] {
+        dict.updateValue(valueDict.nullKeyRemoval(), forKey: key)
+      }
+    }
+    return dict
   }
 }
 

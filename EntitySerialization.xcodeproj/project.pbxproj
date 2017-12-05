@@ -17,6 +17,28 @@
 		E804E2631FBEBE60007F7DF2 /* AbilityEntity+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E804E25E1FBEBE60007F7DF2 /* AbilityEntity+Additions.swift */; };
 		E804E26C1FBEEBE8007F7DF2 /* InfoEntity+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E804E26B1FBEEBE8007F7DF2 /* InfoEntity+Additions.swift */; };
 		E804E26E1FBEF1E7007F7DF2 /* Atlantis.swift in Sources */ = {isa = PBXBuildFile; fileRef = E804E26D1FBEF1E6007F7DF2 /* Atlantis.swift */; };
+		E814978C1FD676DA001602B6 /* Dictionary+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E814978B1FD676DA001602B6 /* Dictionary+Additions.swift */; };
+		E899B9511FD5B13C00FAEB1B /* EntityMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E899B9471FD5B13B00FAEB1B /* EntityMapper.swift */; };
+		E899B9521FD5B13C00FAEB1B /* NSPropertyDescription+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E899B9481FD5B13B00FAEB1B /* NSPropertyDescription+Ext.swift */; };
+		E899B9531FD5B13C00FAEB1B /* NSManagedObject+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E899B9491FD5B13B00FAEB1B /* NSManagedObject+Ext.swift */; };
+		E899B9541FD5B13C00FAEB1B /* NSEntityDescription+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E899B94A1FD5B13B00FAEB1B /* NSEntityDescription+Ext.swift */; };
+		E899B9551FD5B13C00FAEB1B /* CoredataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E899B94B1FD5B13B00FAEB1B /* CoredataProvider.swift */; };
+		E899B9571FD5B13C00FAEB1B /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E899B94F1FD5B13B00FAEB1B /* String+Ext.swift */; };
+		E899B9581FD5B13C00FAEB1B /* NSManagedObject+Serialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = E899B9501FD5B13B00FAEB1B /* NSManagedObject+Serialization.swift */; };
+		E899B95A1FD5B40A00FAEB1B /* Aliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = E899B9591FD5B40A00FAEB1B /* Aliases.swift */; };
+		E899B95C1FD5B45E00FAEB1B /* ALSchedulers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E899B95B1FD5B45E00FAEB1B /* ALSchedulers.swift */; };
+		E899B95E1FD5B4CE00FAEB1B /* Error+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E899B95D1FD5B4CE00FAEB1B /* Error+Additions.swift */; };
+		E899B9601FD5B57200FAEB1B /* SyncOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E899B95F1FD5B57200FAEB1B /* SyncOperations.swift */; };
+		E899B9621FD5B5A100FAEB1B /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E899B9611FD5B5A100FAEB1B /* AsyncOperation.swift */; };
+		E899B9671FD66EB000FAEB1B /* UITableView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E899B9651FD66EB000FAEB1B /* UITableView+Additions.swift */; };
+		E899B9681FD66EB000FAEB1B /* CellIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E899B9661FD66EB000FAEB1B /* CellIdentifiable.swift */; };
+		E899B96D1FD66EBF00FAEB1B /* FileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E899B96A1FD66EBF00FAEB1B /* FileReader.swift */; };
+		E899B96E1FD66EBF00FAEB1B /* JSONReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E899B96C1FD66EBF00FAEB1B /* JSONReader.swift */; };
+		E899B9721FD66F9900FAEB1B /* Observable+Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E899B9701FD66F9900FAEB1B /* Observable+Mapper.swift */; };
+		E899B9731FD66F9900FAEB1B /* Observable+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = E899B9711FD66F9900FAEB1B /* Observable+Operators.swift */; };
+		E899B9761FD6712400FAEB1B /* Data+Additional.swift in Sources */ = {isa = PBXBuildFile; fileRef = E899B9751FD6712400FAEB1B /* Data+Additional.swift */; };
+		E899B9791FD6715E00FAEB1B /* Dictionary+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E899B9781FD6715E00FAEB1B /* Dictionary+Ext.swift */; };
+		E899B97C1FD6719200FAEB1B /* UIView+XibDesignable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E899B97B1FD6719200FAEB1B /* UIView+XibDesignable.swift */; };
 		F2E909993CCFF01D8E61AD20 /* Pods_EntitySerialization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C0C3215FF19D71CBBBA14FA /* Pods_EntitySerialization.framework */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +70,28 @@
 		E804E25E1FBEBE60007F7DF2 /* AbilityEntity+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AbilityEntity+Additions.swift"; sourceTree = "<group>"; };
 		E804E26B1FBEEBE8007F7DF2 /* InfoEntity+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InfoEntity+Additions.swift"; sourceTree = "<group>"; };
 		E804E26D1FBEF1E6007F7DF2 /* Atlantis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Atlantis.swift; sourceTree = "<group>"; };
+		E814978B1FD676DA001602B6 /* Dictionary+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Additions.swift"; sourceTree = "<group>"; };
+		E899B9471FD5B13B00FAEB1B /* EntityMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityMapper.swift; sourceTree = "<group>"; };
+		E899B9481FD5B13B00FAEB1B /* NSPropertyDescription+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSPropertyDescription+Ext.swift"; sourceTree = "<group>"; };
+		E899B9491FD5B13B00FAEB1B /* NSManagedObject+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Ext.swift"; sourceTree = "<group>"; };
+		E899B94A1FD5B13B00FAEB1B /* NSEntityDescription+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSEntityDescription+Ext.swift"; sourceTree = "<group>"; };
+		E899B94B1FD5B13B00FAEB1B /* CoredataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoredataProvider.swift; sourceTree = "<group>"; };
+		E899B94F1FD5B13B00FAEB1B /* String+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
+		E899B9501FD5B13B00FAEB1B /* NSManagedObject+Serialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Serialization.swift"; sourceTree = "<group>"; };
+		E899B9591FD5B40A00FAEB1B /* Aliases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aliases.swift; sourceTree = "<group>"; };
+		E899B95B1FD5B45E00FAEB1B /* ALSchedulers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ALSchedulers.swift; sourceTree = "<group>"; };
+		E899B95D1FD5B4CE00FAEB1B /* Error+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Error+Additions.swift"; sourceTree = "<group>"; };
+		E899B95F1FD5B57200FAEB1B /* SyncOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncOperations.swift; sourceTree = "<group>"; };
+		E899B9611FD5B5A100FAEB1B /* AsyncOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
+		E899B9651FD66EB000FAEB1B /* UITableView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Additions.swift"; sourceTree = "<group>"; };
+		E899B9661FD66EB000FAEB1B /* CellIdentifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellIdentifiable.swift; sourceTree = "<group>"; };
+		E899B96A1FD66EBF00FAEB1B /* FileReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileReader.swift; sourceTree = "<group>"; };
+		E899B96C1FD66EBF00FAEB1B /* JSONReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONReader.swift; sourceTree = "<group>"; };
+		E899B9701FD66F9900FAEB1B /* Observable+Mapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Observable+Mapper.swift"; sourceTree = "<group>"; };
+		E899B9711FD66F9900FAEB1B /* Observable+Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Observable+Operators.swift"; sourceTree = "<group>"; };
+		E899B9751FD6712400FAEB1B /* Data+Additional.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Additional.swift"; sourceTree = "<group>"; };
+		E899B9781FD6715E00FAEB1B /* Dictionary+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Ext.swift"; sourceTree = "<group>"; };
+		E899B97B1FD6719200FAEB1B /* UIView+XibDesignable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+XibDesignable.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +133,7 @@
 		E804E2241FBEB086007F7DF2 = {
 			isa = PBXGroup;
 			children = (
+				E899B9451FD5B13B00FAEB1B /* Sources */,
 				E804E22F1FBEB086007F7DF2 /* EntitySerialization */,
 				E804E2441FBEB086007F7DF2 /* EntitySerializationTests */,
 				E804E22E1FBEB086007F7DF2 /* Products */,
@@ -139,6 +184,187 @@
 			);
 			path = coredata;
 			sourceTree = SOURCE_ROOT;
+		};
+		E81497881FD67672001602B6 /* dbutils */ = {
+			isa = PBXGroup;
+			children = (
+				E81497891FD676A5001602B6 /* extensions */,
+				E899B94D1FD5B13B00FAEB1B /* jsonEntityExporter */,
+				E899B9461FD5B13B00FAEB1B /* entityMapper */,
+			);
+			path = dbutils;
+			sourceTree = "<group>";
+		};
+		E81497891FD676A5001602B6 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E899B9741FD6711800FAEB1B /* data */,
+				E814978A1FD676C6001602B6 /* dictionary */,
+				E899B9801FD672C800FAEB1B /* string */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
+		E814978A1FD676C6001602B6 /* dictionary */ = {
+			isa = PBXGroup;
+			children = (
+				E814978B1FD676DA001602B6 /* Dictionary+Additions.swift */,
+			);
+			path = dictionary;
+			sourceTree = "<group>";
+		};
+		E814978D1FD677BF001602B6 /* usefull */ = {
+			isa = PBXGroup;
+			children = (
+				E899B97E1FD6722B00FAEB1B /* common */,
+				E899B9631FD66E9700FAEB1B /* utils */,
+				E899B94C1FD5B13B00FAEB1B /* extensions */,
+			);
+			path = usefull;
+			sourceTree = "<group>";
+		};
+		E899B9451FD5B13B00FAEB1B /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				E814978D1FD677BF001602B6 /* usefull */,
+				E81497881FD67672001602B6 /* dbutils */,
+				E899B97F1FD6724800FAEB1B /* coredataProvider */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		E899B9461FD5B13B00FAEB1B /* entityMapper */ = {
+			isa = PBXGroup;
+			children = (
+				E899B9471FD5B13B00FAEB1B /* EntityMapper.swift */,
+				E899B9481FD5B13B00FAEB1B /* NSPropertyDescription+Ext.swift */,
+				E899B9491FD5B13B00FAEB1B /* NSManagedObject+Ext.swift */,
+				E899B94A1FD5B13B00FAEB1B /* NSEntityDescription+Ext.swift */,
+			);
+			path = entityMapper;
+			sourceTree = "<group>";
+		};
+		E899B94C1FD5B13B00FAEB1B /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E899B97D1FD6719F00FAEB1B /* error */,
+				E899B97A1FD6718B00FAEB1B /* view */,
+				E899B9771FD6715800FAEB1B /* dictionary */,
+				E899B96F1FD66F7100FAEB1B /* observable */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
+		E899B94D1FD5B13B00FAEB1B /* jsonEntityExporter */ = {
+			isa = PBXGroup;
+			children = (
+				E899B9501FD5B13B00FAEB1B /* NSManagedObject+Serialization.swift */,
+			);
+			path = jsonEntityExporter;
+			sourceTree = "<group>";
+		};
+		E899B9631FD66E9700FAEB1B /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				E899B9691FD66EBF00FAEB1B /* FileReader */,
+				E899B96B1FD66EBF00FAEB1B /* JSONReader */,
+				E899B9641FD66EB000FAEB1B /* tableview */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		E899B9641FD66EB000FAEB1B /* tableview */ = {
+			isa = PBXGroup;
+			children = (
+				E899B9651FD66EB000FAEB1B /* UITableView+Additions.swift */,
+				E899B9661FD66EB000FAEB1B /* CellIdentifiable.swift */,
+			);
+			path = tableview;
+			sourceTree = "<group>";
+		};
+		E899B9691FD66EBF00FAEB1B /* FileReader */ = {
+			isa = PBXGroup;
+			children = (
+				E899B96A1FD66EBF00FAEB1B /* FileReader.swift */,
+			);
+			path = FileReader;
+			sourceTree = "<group>";
+		};
+		E899B96B1FD66EBF00FAEB1B /* JSONReader */ = {
+			isa = PBXGroup;
+			children = (
+				E899B96C1FD66EBF00FAEB1B /* JSONReader.swift */,
+			);
+			path = JSONReader;
+			sourceTree = "<group>";
+		};
+		E899B96F1FD66F7100FAEB1B /* observable */ = {
+			isa = PBXGroup;
+			children = (
+				E899B9701FD66F9900FAEB1B /* Observable+Mapper.swift */,
+				E899B9711FD66F9900FAEB1B /* Observable+Operators.swift */,
+			);
+			path = observable;
+			sourceTree = "<group>";
+		};
+		E899B9741FD6711800FAEB1B /* data */ = {
+			isa = PBXGroup;
+			children = (
+				E899B9751FD6712400FAEB1B /* Data+Additional.swift */,
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
+		E899B9771FD6715800FAEB1B /* dictionary */ = {
+			isa = PBXGroup;
+			children = (
+				E899B9781FD6715E00FAEB1B /* Dictionary+Ext.swift */,
+			);
+			path = dictionary;
+			sourceTree = "<group>";
+		};
+		E899B97A1FD6718B00FAEB1B /* view */ = {
+			isa = PBXGroup;
+			children = (
+				E899B97B1FD6719200FAEB1B /* UIView+XibDesignable.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		E899B97D1FD6719F00FAEB1B /* error */ = {
+			isa = PBXGroup;
+			children = (
+				E899B95D1FD5B4CE00FAEB1B /* Error+Additions.swift */,
+			);
+			path = error;
+			sourceTree = "<group>";
+		};
+		E899B97E1FD6722B00FAEB1B /* common */ = {
+			isa = PBXGroup;
+			children = (
+				E899B95B1FD5B45E00FAEB1B /* ALSchedulers.swift */,
+				E899B9611FD5B5A100FAEB1B /* AsyncOperation.swift */,
+				E899B9591FD5B40A00FAEB1B /* Aliases.swift */,
+			);
+			path = common;
+			sourceTree = "<group>";
+		};
+		E899B97F1FD6724800FAEB1B /* coredataProvider */ = {
+			isa = PBXGroup;
+			children = (
+				E899B95F1FD5B57200FAEB1B /* SyncOperations.swift */,
+				E899B94B1FD5B13B00FAEB1B /* CoredataProvider.swift */,
+			);
+			path = coredataProvider;
+			sourceTree = "<group>";
+		};
+		E899B9801FD672C800FAEB1B /* string */ = {
+			isa = PBXGroup;
+			children = (
+				E899B94F1FD5B13B00FAEB1B /* String+Ext.swift */,
+			);
+			path = string;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -250,12 +476,16 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-EntitySerialization/Pods-EntitySerialization-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/DATAStack/DATAStack.framework",
-				"${BUILT_PRODUCTS_DIR}/DBUtils/DBUtils.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DATAStack.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DBUtils.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -302,12 +532,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E899B9521FD5B13C00FAEB1B /* NSPropertyDescription+Ext.swift in Sources */,
+				E899B9511FD5B13C00FAEB1B /* EntityMapper.swift in Sources */,
+				E899B9621FD5B5A100FAEB1B /* AsyncOperation.swift in Sources */,
+				E899B9791FD6715E00FAEB1B /* Dictionary+Ext.swift in Sources */,
+				E899B9571FD5B13C00FAEB1B /* String+Ext.swift in Sources */,
+				E899B97C1FD6719200FAEB1B /* UIView+XibDesignable.swift in Sources */,
+				E899B9731FD66F9900FAEB1B /* Observable+Operators.swift in Sources */,
+				E899B9671FD66EB000FAEB1B /* UITableView+Additions.swift in Sources */,
+				E899B9601FD5B57200FAEB1B /* SyncOperations.swift in Sources */,
+				E814978C1FD676DA001602B6 /* Dictionary+Additions.swift in Sources */,
+				E899B9551FD5B13C00FAEB1B /* CoredataProvider.swift in Sources */,
+				E899B95A1FD5B40A00FAEB1B /* Aliases.swift in Sources */,
+				E899B9761FD6712400FAEB1B /* Data+Additional.swift in Sources */,
 				E804E26E1FBEF1E7007F7DF2 /* Atlantis.swift in Sources */,
+				E899B9681FD66EB000FAEB1B /* CellIdentifiable.swift in Sources */,
+				E899B95E1FD5B4CE00FAEB1B /* Error+Additions.swift in Sources */,
 				E804E26C1FBEEBE8007F7DF2 /* InfoEntity+Additions.swift in Sources */,
 				E804E2331FBEB086007F7DF2 /* ViewController.swift in Sources */,
+				E899B95C1FD5B45E00FAEB1B /* ALSchedulers.swift in Sources */,
+				E899B9721FD66F9900FAEB1B /* Observable+Mapper.swift in Sources */,
 				E804E2311FBEB086007F7DF2 /* AppDelegate.swift in Sources */,
+				E899B96D1FD66EBF00FAEB1B /* FileReader.swift in Sources */,
+				E899B9541FD5B13C00FAEB1B /* NSEntityDescription+Ext.swift in Sources */,
+				E899B9581FD5B13C00FAEB1B /* NSManagedObject+Serialization.swift in Sources */,
+				E899B96E1FD66EBF00FAEB1B /* JSONReader.swift in Sources */,
 				E804E2601FBEBE60007F7DF2 /* db.xcdatamodeld in Sources */,
 				E804E2631FBEBE60007F7DF2 /* AbilityEntity+Additions.swift in Sources */,
+				E899B9531FD5B13C00FAEB1B /* NSManagedObject+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,7 +719,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.lobanov.EntitySerialization;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -483,7 +735,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.lobanov.EntitySerialization;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

@@ -1,0 +1,19 @@
+//
+//  Data+Additional.swift
+//  Puls
+//
+//  Created by MOPC on 03/08/2017.
+//  Copyright © 2017 MOPC. All rights reserved.
+//
+
+import Foundation
+
+public extension Data {
+  func toJSON() throws -> DictionaryAnyObject? {
+    guard let json = try JSONSerialization.jsonObject(with: self, options: .mutableContainers) as? DictionaryAnyObject else {
+      throw NSError.define(description: "NSData could not serialized to JSON")
+    }
+    
+    return json
+  }
+}

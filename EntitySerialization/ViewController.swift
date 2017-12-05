@@ -8,7 +8,8 @@
 
 import UIKit
 import DATAStack
-import DBUtils
+import RxSwift
+//import DBUtils
 
 class DateToStringTransformer: ValueTransformer {
   override class func transformedValueClass() -> AnyClass { //What do I transform
@@ -34,9 +35,10 @@ class DateToStringTransformer: ValueTransformer {
 }
 
 class ViewController: UIViewController {
-
   let dataStack = DATAStack(modelName:"db")
+  let provider = CoredataProvider(dataStack: DATAStack(modelName:"db"))
   let logger = Atlantis.Logger()
+  let bag = DisposeBag()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -54,15 +56,30 @@ class ViewController: UIViewController {
 
     
     
-    dataStack.performInNewBackgroundContext { [weak self] context in
-//      let obj = try! EntityMapper<InfoEntity>(context: context, object: d).mapSelf()
-      ValueTransformer.setValueTransformer(DateToStringTransformer(), forName: NSValueTransformerName(rawValue: "DateToStringTransformer"))
-      let mapper = EntityMapper<AbilityEntity>(context: context)
-      _ = try! mapper.mapSelf(object: d)
-      
-      try! context.save()
-      self?.log()
-    }
+    provider.mapObject(AbilityEntity.self, json: d).subscribe(onNext: { _ in
+      print("Success save")
+      self.delete()
+      self.log()
+    }, onError: { error in
+      print(error.localizedDescription)
+    }).disposed(by: bag)
+    
+//    dataStack.performInNewBackgroundContext { [weak self] context in
+////      let obj = try! EntityMapper<InfoEntity>(context: context, object: d).mapSelf()
+//      ValueTransformer.setValueTransformer(DateToStringTransformer(), forName: NSValueTransformerName(rawValue: "DateToStringTransformer"))
+//      let mapper = EntityMapper<AbilityEntity>(context: context)
+//      _ = try! mapper.mapSelf(object: d)
+//
+//      try! context.save()
+//      self?.log()
+//    }
+  }
+  
+  func delete() {
+    provider.delete(InfoEntity.self, id: 4, primaryKey: "id").subscribe(onNext: { _ in
+      print("Success delete")
+      self.log()
+    }).disposed(by: bag)
   }
   
   func tetst() {

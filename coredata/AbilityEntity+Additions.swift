@@ -8,7 +8,7 @@
 
 import Foundation
 import CoreData
-import DBUtils
+//import DBUtils
 
 @objc(AbilityEntity)
 public class AbilityEntity: NSManagedObject, NSManagedObjectMappable {
@@ -25,15 +25,19 @@ public class AbilityEntity: NSManagedObject, NSManagedObjectMappable {
     return "id"
   }
   
-  public func map(object: [String: Any], context: NSManagedObjectContext) {
-    self.id = Int64(object.int(by: Fields.id) ?? 0)
-    self.name = object.string(by: Fields.name) ?? ""
-    
-    let mapper = EntityMapper<AbilityEntity>(context: context)
-    if let infos = mapper.mapRelationToMany(relation: Relations.infos, type: InfoEntity.self, object: object) {
-      self.infoItems = NSSet(array: infos)
-    } else {
-      self.infoItems = nil
+  public func map(object: [String: Any], context: NSManagedObjectContext) throws {
+    do {
+      self.id = Int64(object.int(by: Fields.id) ?? 0)
+      self.name = object.string(by: Fields.name) ?? ""
+      
+      let mapper = EntityMapper<AbilityEntity>(context: context)
+      if let infos = try mapper.mapRelationToMany(relation: Relations.infos, type: InfoEntity.self, object: object) {
+        self.infoItems = NSSet(array: infos)
+      } else {
+        self.infoItems = nil
+      }
+    } catch (let e) {
+      throw e as NSError
     }
   }
 }
