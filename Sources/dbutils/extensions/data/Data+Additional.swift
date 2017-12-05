@@ -16,4 +16,12 @@ public extension Data {
     
     return json
   }
+  
+  func toJSONArray() throws -> DictionaryArray? {
+    guard let json = try JSONSerialization.jsonObject(with: self, options: .mutableContainers) as? DictionaryArray else {
+      throw NSError.define(description: "NSData could not serialized to JSON")
+    }
+    
+    return array
+  }
 }
