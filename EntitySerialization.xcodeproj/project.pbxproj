@@ -18,6 +18,7 @@
 		E804E26C1FBEEBE8007F7DF2 /* InfoEntity+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E804E26B1FBEEBE8007F7DF2 /* InfoEntity+Additions.swift */; };
 		E804E26E1FBEF1E7007F7DF2 /* Atlantis.swift in Sources */ = {isa = PBXBuildFile; fileRef = E804E26D1FBEF1E6007F7DF2 /* Atlantis.swift */; };
 		E814978C1FD676DA001602B6 /* Dictionary+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E814978B1FD676DA001602B6 /* Dictionary+Additions.swift */; };
+		E87DD7D81FDAF3FE00556E90 /* Formatter+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87DD7D71FDAF3FE00556E90 /* Formatter+Additions.swift */; };
 		E899B9511FD5B13C00FAEB1B /* EntityMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E899B9471FD5B13B00FAEB1B /* EntityMapper.swift */; };
 		E899B9521FD5B13C00FAEB1B /* NSPropertyDescription+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E899B9481FD5B13B00FAEB1B /* NSPropertyDescription+Ext.swift */; };
 		E899B9531FD5B13C00FAEB1B /* NSManagedObject+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E899B9491FD5B13B00FAEB1B /* NSManagedObject+Ext.swift */; };
@@ -71,6 +72,7 @@
 		E804E26B1FBEEBE8007F7DF2 /* InfoEntity+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InfoEntity+Additions.swift"; sourceTree = "<group>"; };
 		E804E26D1FBEF1E6007F7DF2 /* Atlantis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Atlantis.swift; sourceTree = "<group>"; };
 		E814978B1FD676DA001602B6 /* Dictionary+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Additions.swift"; sourceTree = "<group>"; };
+		E87DD7D71FDAF3FE00556E90 /* Formatter+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Formatter+Additions.swift"; sourceTree = "<group>"; };
 		E899B9471FD5B13B00FAEB1B /* EntityMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityMapper.swift; sourceTree = "<group>"; };
 		E899B9481FD5B13B00FAEB1B /* NSPropertyDescription+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSPropertyDescription+Ext.swift"; sourceTree = "<group>"; };
 		E899B9491FD5B13B00FAEB1B /* NSManagedObject+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Ext.swift"; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 		E81497891FD676A5001602B6 /* extensions */ = {
 			isa = PBXGroup;
 			children = (
+				E87DD7D61FDAF3E300556E90 /* formatter */,
 				E899B9741FD6711800FAEB1B /* data */,
 				E814978A1FD676C6001602B6 /* dictionary */,
 				E899B9801FD672C800FAEB1B /* string */,
@@ -221,6 +224,14 @@
 				E899B94C1FD5B13B00FAEB1B /* extensions */,
 			);
 			path = usefull;
+			sourceTree = "<group>";
+		};
+		E87DD7D61FDAF3E300556E90 /* formatter */ = {
+			isa = PBXGroup;
+			children = (
+				E87DD7D71FDAF3FE00556E90 /* Formatter+Additions.swift */,
+			);
+			path = formatter;
 			sourceTree = "<group>";
 		};
 		E899B9451FD5B13B00FAEB1B /* Sources */ = {
@@ -539,6 +550,7 @@
 				E899B9571FD5B13C00FAEB1B /* String+Ext.swift in Sources */,
 				E899B97C1FD6719200FAEB1B /* UIView+XibDesignable.swift in Sources */,
 				E899B9731FD66F9900FAEB1B /* Observable+Operators.swift in Sources */,
+				E87DD7D81FDAF3FE00556E90 /* Formatter+Additions.swift in Sources */,
 				E899B9671FD66EB000FAEB1B /* UITableView+Additions.swift in Sources */,
 				E899B9601FD5B57200FAEB1B /* SyncOperations.swift in Sources */,
 				E814978C1FD676DA001602B6 /* Dictionary+Additions.swift in Sources */,

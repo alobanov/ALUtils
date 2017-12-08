@@ -37,6 +37,14 @@ public extension Dictionary {
 }
 
 public extension Dictionary where Key == String {
+  func date(by key: String, dateFormat: String?) -> Date? {
+    if let value = self[key] as? String {
+      return value.iso8601(format: dateFormat)
+    } else {
+      return nil
+    }
+  }
+  
   func string(by key: String) -> String? {
     return self[key] as? String
   }
