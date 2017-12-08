@@ -64,6 +64,24 @@ class ViewController: UIViewController {
       print(error.localizedDescription)
     }).disposed(by: bag)
     
+    provider.edit { context -> Observable<Void> in
+        do {
+          let objects: [AbilityEntity] = try NSManagedObject.createOrUpdateEntities(context: context, pkKey: "id", pkValue: 5 as NSObject)
+          
+          for entity in objects {
+            entity.name = "asdasdasdasdasdadad"
+          }
+          
+          return Observable.just()
+        } catch (let e) {
+          return Observable.error(e)
+        }
+      }.subscribe(onNext: { _ in
+        print("success")
+      }, onError: { error in
+        print("error")
+      }).disposed(by: bag)
+    
 //    dataStack.performInNewBackgroundContext { [weak self] context in
 ////      let obj = try! EntityMapper<InfoEntity>(context: context, object: d).mapSelf()
 //      ValueTransformer.setValueTransformer(DateToStringTransformer(), forName: NSValueTransformerName(rawValue: "DateToStringTransformer"))

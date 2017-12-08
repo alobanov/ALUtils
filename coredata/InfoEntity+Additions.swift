@@ -30,13 +30,13 @@ public class InfoEntity: NSManagedObject, NSManagedObjectMappable {
     self.boolValue = object.bool(by: "boolValue") ?? false
     
     if let strDate = object.string(by: "dateValue") {
-      self.dateValue = formatter.date(from: strDate)
+      self.dateValue = formatter.date(from: strDate) as! NSDate
     }
     
     self.date = object.string(by: "date")
     self.floatValue = object.float(by: "floatValue") ?? 0
     self.doubleValue = object.double(by: "double_value") ?? 0
-    self.binaryValue = object.data(by: "binaryValue")
+    self.binaryValue = object.data(by: "binaryValue") as! NSData
     self.decimalValue = object.decimal(by: "decimalValue")
   }
 }

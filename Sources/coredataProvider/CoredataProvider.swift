@@ -18,6 +18,7 @@ public protocol CoredataMappable {
   func mapArray<T: NSManagedObjectMappable>(_ type: T.Type, jsonArray: JSONArrayDictionary) -> Observable<Void>
   func mapAndReturnArray <T: NSManagedObjectMappable, ReturnType: Mappable>
   (_ type: T.Type, returnType: ReturnType.Type, jsonArray: JSONArrayDictionary) -> Observable<[ReturnType]>
+  func edit(_ closure: @escaping EditOperation.ActionClosure) -> Observable<Void>
 }
 
 public protocol CoredataDeletable {
