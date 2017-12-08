@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension Formatter {
+public extension Formatter {
   static let iso8601: DateFormatter = {
     let formatter = DateFormatter()
     formatter.calendar = Calendar(identifier: .iso8601)
@@ -18,7 +18,8 @@ extension Formatter {
     return formatter
   }()
 }
-extension Date {
+
+public extension Date {
   func iso8601(format: String?) -> String? {
     let frmt = Formatter.iso8601
     frmt.dateFormat = format ?? "yyyy-MM-dd HH:mm:ss"
@@ -30,7 +31,7 @@ extension Date {
   }
 }
 
-extension String {
+public extension String {
   func iso8601(format: String?) -> Date? {
     let frmt = Formatter.iso8601
     frmt.dateFormat = format ?? "yyyy-MM-dd HH:mm:ss"
