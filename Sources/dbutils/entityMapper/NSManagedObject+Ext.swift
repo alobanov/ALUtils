@@ -9,8 +9,8 @@
 import Foundation
 import CoreData
 
-extension NSManagedObject {
-  class func verifyContextSafety(context: NSManagedObjectContext) {
+public extension NSManagedObject {
+  public class func verifyContextSafety(context: NSManagedObjectContext) {
     if Thread.isMainThread && context.concurrencyType == .privateQueueConcurrencyType {
       fatalError("Background context used in the main thread. Use context's `perform` method")
     }
@@ -35,7 +35,7 @@ extension NSManagedObject {
     }
   }
   
-  static func createOrUpdateEntities<ResultType: NSManagedObject>(context: NSManagedObjectContext, pkKey: String, pkValue: NSObject?) throws -> [ResultType] {
+  public class func createOrUpdateEntities<ResultType: NSManagedObject>(context: NSManagedObjectContext, pkKey: String, pkValue: NSObject?) throws -> [ResultType] {
     NSManagedObject.verifyContextSafety(context: context)
     
     let entityName = String(describing: ResultType.self)
