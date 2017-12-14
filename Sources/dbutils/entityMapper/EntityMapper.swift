@@ -20,7 +20,7 @@ public class EntityMapper<BaseType: NSManagedObjectMappable> {
   public static func map<T: NSManagedObjectMappable>(type:T.Type, object: [String: Any], context: NSManagedObjectContext) throws -> T {
     let key = T.primaryKey()
     do {
-      let objects: [T] = try NSManagedObject.createOrUpdateEntities(context: context, pkKey: key, pkValue: object[key] as? NSObject)
+      let objects: [T] = try T.createOrUpdateEntities(context: context, pkKey: key, pkValue: object[key] as? NSObject)
       
       for entity in objects {
         try entity.map(object: object, context: context)
