@@ -45,7 +45,7 @@ class ViewController: UIViewController {
     // Do any additional setup after loading the view, typically from a nib.
     
     let d: [  String: Any] = ["id": 5, "name": "Lotro Bregich",
-                             "info_items":  [["id": 4, "boolValue": false,
+                             "info_items":  [["id": 2, "boolValue": false,
                        "dateValue": "2012-10-11T23:14:00+05:00", "floatValue": 3.34,
                        "double_value": 3.23421, "binaryValue": NSNull(), "decimalValue": 43.3,
                        "date": "2012-10-11T23:14:00+00:00"],
@@ -66,7 +66,7 @@ class ViewController: UIViewController {
     
     provider.edit { context -> Observable<Void> in
         do {
-          let objects: [AbilityEntity] = try NSManagedObject.createOrUpdateEntities(context: context, pkKey: "id", pkValue: 5 as NSObject)
+          let objects: [AbilityEntity] = try NSManagedObject.createOrUpdateEntities(context: context, pkKey: "id", id: 5)
           
           for entity in objects {
             entity.name = "asdasdasdasdasdadad"

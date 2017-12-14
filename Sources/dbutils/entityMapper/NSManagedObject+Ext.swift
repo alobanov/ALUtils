@@ -35,18 +35,14 @@ public extension NSManagedObject {
     }
   }
   
-  public class func createOrUpdateEntities<ResultType: NSManagedObject>(context: NSManagedObjectContext, pkKey: String, pkValue: NSObject?) throws -> [ResultType] {
+  public class func createOrUpdateEntities<ResultType: NSManagedObject>(context: NSManagedObjectContext, pkKey: String, id: Any) throws -> [ResultType] {
     NSManagedObject.verifyContextSafety(context: context)
     
     let entityName = String(describing: ResultType.self)
     
-    guard let id = pkValue else {
-      throw NSError.define(description: "Couldn't find primary key \(pkKey) in JSON for object in entity \(entityName)")
-    }
-    
     do {
       let fetchRequest = NSFetchRequest<ResultType>(entityName: entityName)
-      let predicate = NSPredicate(format: "%K = %@", pkKey, id)
+      let predicate = NSPredicate(format: "%K = %@", pkKey, id as! NSObject)
       fetchRequest.predicate = predicate
       
       let fetchedObjects = try context.fetch(fetchRequest)
