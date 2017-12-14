@@ -46,7 +46,7 @@ public extension NSManagedObject {
     
     do {
       let fetchRequest = NSFetchRequest<ResultType>(entityName: entityName)
-      fetchRequest.predicate = NSPredicate(format: "%K = %@", pkKey, id)
+      fetchRequest.predicate = NSPredicate(format: "\(pkKey) = %@", id)
       
       let fetchedObjects = try context.fetch(fetchRequest)
       let insertedOrUpdatedObjects: [ResultType]
