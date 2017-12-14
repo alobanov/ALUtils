@@ -46,7 +46,6 @@ public class CoredataProvider: CoredataMappable, CoredataFetcher, CoredataCleana
     let queue = OperationQueue()
     queue.maxConcurrentOperationCount = 1
     queue.underlyingQueue = DispatchQueue(label: "ru.lobanov.serialDatabaseQueue")
-    queue.waitUntilAllOperationsAreFinished()
     return queue
   }()
   
