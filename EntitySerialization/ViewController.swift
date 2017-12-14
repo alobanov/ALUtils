@@ -44,21 +44,41 @@ class ViewController: UIViewController {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
     
-    let d: [  String: Any] = ["id": 5, "name": "Lotro Bregich",
-                             "info_items":  [["id": 2, "boolValue": false,
-                       "dateValue": "2012-10-11T23:14:00+05:00", "floatValue": 3.34,
-                       "double_value": 3.23421, "binaryValue": NSNull(), "decimalValue": 43.3,
-                       "date": "2012-10-11T23:14:00+00:00"],
-                      ["id": 2, "boolValue": true,
-                       "dateValue": "2012-10-11T23:14:00+05:00", "floatValue": 3.123456789,
-                       "double_value": 3.123456789, "binaryValue": NSNull(), "decimalValue": 43.123456789,
-                       "date": "2012-10-11T23:14:00+00:00"]]]
+    let d: [[String: Any]] = [
+      ["id": 5, "name": "Lotro Bregich",
+       "iii": ["id": 4, "boolValue": false,
+               "dateValue": "2012-10-11T23:14:00+05:00", "floatValue": 3.34,
+               "double_value": 3.23421, "binaryValue": NSNull(), "decimalValue": 43.3,
+               "date": "2012-10-11T23:14:00+00:00"],
+                             "info_items":
+                                [["id": 2, "boolValue": false,
+                                  "dateValue": "2012-10-11T23:14:00+05:00", "floatValue": 3.34,
+                                  "double_value": 3.23421, "binaryValue": NSNull(), "decimalValue": 43.3,
+                                  "date": "2012-10-11T23:14:00+00:00"],
+                                 ["id": 2, "boolValue": true,
+                                  "dateValue": "2012-10-11T23:14:00+05:00", "floatValue": 3.123456789,
+                                  "double_value": 3.123456789, "binaryValue": NSNull(), "decimalValue": 43.123456789,
+                                  "date": "2012-10-11T23:14:00+00:00"]]],
+      ["id": 4, "name": "Lotro Bregich",
+       "iii": ["id": 4, "boolValue": false,
+               "dateValue": "2012-10-11T23:14:00+05:00", "floatValue": 3.34,
+               "double_value": 3.23421, "binaryValue": NSNull(), "decimalValue": 43.3,
+               "date": "2012-10-11T23:14:00+00:00"],
+       "info_items":
+        [["id": 1, "boolValue": false,
+          "dateValue": "2012-10-11T23:14:00+05:00", "floatValue": 3.34,
+          "double_value": 3.23421, "binaryValue": NSNull(), "decimalValue": 43.3,
+          "date": "2012-10-11T23:14:00+00:00"],
+         ["id": 2, "boolValue": true,
+          "dateValue": "2012-10-11T23:14:00+05:00", "floatValue": 3.123456789,
+          "double_value": 3.123456789, "binaryValue": NSNull(), "decimalValue": 43.123456789,
+          "date": "2012-10-11T23:14:00+00:00"]]]]
 
     
     
-    provider.mapObject(AbilityEntity.self, json: d).subscribe(onNext: { _ in
+    provider.mapArray(AbilityEntity.self, jsonArray: d).subscribe(onNext: { _ in
       print("Success save")
-      self.delete()
+//      self.delete()
       self.log()
     }, onError: { error in
       print(error.localizedDescription)

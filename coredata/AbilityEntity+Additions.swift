@@ -36,6 +36,13 @@ public class AbilityEntity: NSManagedObject, NSManagedObjectMappable {
       } else {
         self.infoItems = nil
       }
+      
+      if let info = try mapper.mapRelationToOne(relation: "iii", type: InfoEntity.self, object: object) {
+        self.iii = info
+      } else {
+        self.iii = nil
+      }
+      
     } catch (let e) {
       throw e as NSError
     }
