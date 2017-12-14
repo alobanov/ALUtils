@@ -49,20 +49,9 @@ public extension NSManagedObject {
       let insertedOrUpdatedObjects: [ResultType]
       if fetchedObjects.count > 0 {
         insertedOrUpdatedObjects = fetchedObjects
-//        if fetchedObjects.count > 1 {
-//          for (index, ent) in fetchedObjects.enumerated() {
-//            if index > 0 {
-//              context.delete(ent)
-//            }
-//          }
-//        }
       } else {
         let inserted = NSEntityDescription.insertNewObject(forEntityName: entityName, into: context) as! ResultType
         insertedOrUpdatedObjects = [inserted]
-      }
-      
-      if context.hasChanges {
-        try context.save()
       }
       
       return insertedOrUpdatedObjects

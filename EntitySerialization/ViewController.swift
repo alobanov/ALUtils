@@ -84,6 +84,30 @@ class ViewController: UIViewController {
       print(error.localizedDescription)
     }).disposed(by: bag)
     
+    provider.mapArray(AbilityEntity.self, jsonArray: d).subscribe(onNext: { _ in
+      print("Success save")
+      //      self.delete()
+      self.log()
+    }, onError: { error in
+      print(error.localizedDescription)
+    }).disposed(by: bag)
+    
+    provider.mapArray(AbilityEntity.self, jsonArray: d).subscribe(onNext: { _ in
+      print("Success save")
+      //      self.delete()
+      self.log()
+    }, onError: { error in
+      print(error.localizedDescription)
+    }).disposed(by: bag)
+    
+    provider.mapArray(AbilityEntity.self, jsonArray: d).subscribe(onNext: { _ in
+      print("Success save")
+      //      self.delete()
+      self.log()
+    }, onError: { error in
+      print(error.localizedDescription)
+    }).disposed(by: bag)
+    
     provider.edit { context -> Observable<Void> in
         do {
           let objects: [AbilityEntity] = try NSManagedObject.createOrUpdateEntities(context: context, pkKey: "id", id: 5)
