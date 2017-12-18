@@ -25,13 +25,11 @@ public class InfoEntity: NSManagedObject, NSManagedObjectMappable {
   }
   
   public func map(object: [String: Any], context: NSManagedObjectContext) {
-    let formatter = NSManagedObject.defaultDateFormatter
+    
     self.id = Int64(object.int(by: "id") ?? 0)
     self.boolValue = object.bool(by: "boolValue") ?? false
     
-    if let strDate = object.string(by: "dateValue") {
-      self.dateValue = formatter.date(from: strDate) as! NSDate
-    }
+    self.dateValue = object.date(by: "dateValue", dateFormat: nil, gmt: false) as NSDate?
     
     self.date = object.string(by: "date")
     self.floatValue = object.float(by: "floatValue") ?? 0

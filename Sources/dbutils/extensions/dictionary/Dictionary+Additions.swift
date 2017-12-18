@@ -37,9 +37,9 @@ public extension Dictionary {
 }
 
 public extension Dictionary where Key == String {
-  func date(by key: String, dateFormat: String?) -> Date? {
+  func date(by key: String, dateFormat: String?, gmt: Bool) -> Date? {
     if let value = self[key] as? String {
-      return value.iso8601(format: dateFormat)
+      return value.iso8601(format: dateFormat ?? "yyyy-MM-dd'T'HH:mm:ssZZZZ", gmt: gmt)
     } else {
       return nil
     }
