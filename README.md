@@ -1,5 +1,5 @@
 # DBUtils
-Database utils for Coredata
+Utils
 
 ```swift
 source 'https://github.com/alobanov/ALSpec.git'
@@ -10,6 +10,8 @@ inhibit_all_warnings!
 platform :ios, '9.0'
 
 target 'TestLib' do
-pod 'DBUtils'
+pod 'ALUtils/Utils', :git => 'https://github.com/alobanov/ALUtils.git', :branch => 'master'
+pod 'ALUtils/DBUtils', :git => 'https://github.com/alobanov/ALUtils.git', :branch => 'master'
+pod 'ALUtils/RxCoredataProvider', :git => 'https://github.com/alobanov/ALUtils.git', :branch => 'master'
 end
 ```
