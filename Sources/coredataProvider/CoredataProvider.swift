@@ -11,10 +11,37 @@ import RxSwift
 import DATAStack
 import ObjectMapper
 
+enum ORMError {
+  case notDefineDATAStack
+  case failedParsingJson(objectTypeStr: String)
+  case failedSavedObjectNotFoundInDB(objectTypeStr: String)
+  case failedMapObject(objectTypeStr: String)
+  
+  var error: NSError {
+    switch self {
+    case .notDefineDATAStack:
+      return NSError.define(description: "DataStack not define.",
+                            failureReason: "Bad news, something wrong with DATAStack in CoredataProvider",
+                            code: -31)
+    case .failedParsingJson(let objectTypeStr):
+      return NSError.define(description: "Can`t parse json object ot "+objectTypeStr+" class type.",
+                            failureReason: "Check your "+objectTypeStr+" class mapper rules.",
+                            code: -32)
+    case .failedSavedObjectNotFoundInDB(let objectTypeStr):
+      return NSError.define(description: "Can`t find object "+objectTypeStr+" class type, after saving in DB.",
+                            failureReason: "Check your "+objectTypeStr+" class mapper rules.",
+                            code: -33)
+    case .failedMapObject(let objectTypeStr):
+      return NSError.define(description: "Can`t map object "+objectTypeStr+" class type.",
+                            failureReason: "Check your "+objectTypeStr+" class mapper rules.",
+                            code: -33)
+    }
+  }
+}
+
 public protocol CoredataMappable {
   func mapObject<T: NSManagedObjectMappable>(_ type: T.Type, json: JSONDictionary) -> Observable<Void>
-  func mapAndReturnObject<T: NSManagedObjectMappable, ReturnType: Mappable>
-    (_ type: T.Type, returnType: ReturnType.Type, json: JSONDictionary) -> Observable<ReturnType>
+  func mapAndReturnObject<T: NSManagedObjectMappable, ReturnType: Mappable>(_ type: T.Type, returnType: ReturnType.Type, json: JSONDictionary) -> Observable<ReturnType>
   func mapArray<T: NSManagedObjectMappable>(_ type: T.Type, jsonArray: JSONArrayDictionary) -> Observable<Void>
   func mapAndReturnArray <T: NSManagedObjectMappable, ReturnType: Mappable>
   (_ type: T.Type, returnType: ReturnType.Type, jsonArray: JSONArrayDictionary) -> Observable<[ReturnType]>
@@ -59,7 +86,7 @@ public extension CoredataCleanable  where Self: CoredataProvider {
     return Observable<Void>.create({ [weak self] observer -> Disposable in
       
       guard let stack = self?.dataStack else {
-        observer.onError(NSError.define(description: "error"))
+        observer.onError(ORMError.notDefineDATAStack.error)
         return Disposables.create()
       }
       
@@ -72,7 +99,6 @@ public extension CoredataCleanable  where Self: CoredataProvider {
             let isSubclass = managedObjectClass.isSubclass(of: type.self)
             let isSubclass2 = type.isSubclass(of: managedObjectClass.self)
             let isClass = managedObjectClass.self == type.self
-//            print("\(managedObjectClass), \(type) \(isSubclass) \(isSubclass2) \(isClass)")
             return isSubclass || isSubclass2 || isClass
           })
           if (!contains) {
@@ -115,7 +141,7 @@ public extension CoredataMappable where Self: CoredataProvider {
         if let first = objects.first {
           return Observable.just(first)
         } else {
-          throw NSError.define(description: "Parsing error")
+          throw ORMError.failedSavedObjectNotFoundInDB(objectTypeStr: "\(T.self)").error
         }
       })
   }
@@ -126,7 +152,7 @@ public extension CoredataMappable where Self: CoredataProvider {
     return Observable<[ReturnType]>.create({ [weak self] observer -> Disposable in
       
       guard let stack = self?.dataStack else {
-        observer.onError(NSError.define(description: "Something wrong with DATAstack"))
+        observer.onError(ORMError.notDefineDATAStack.error)
         return Disposables.create()
       }
       
@@ -144,7 +170,7 @@ public extension CoredataMappable where Self: CoredataProvider {
               if let model = Mapper<ReturnType>().map(JSON: json) {
                 return model
               } else {
-                throw NSError.define(description: "cant parse object")
+                throw ORMError.failedParsingJson(objectTypeStr: "\(ReturnType.self)").error
               }
             }
           })
@@ -169,7 +195,7 @@ public extension CoredataMappable where Self: CoredataProvider {
     return Observable<Void>.create({ [weak self] observer -> Disposable in
       
       guard let stack = self?.dataStack else {
-        observer.onError(NSError.define(description: "ormWriteError"))
+        observer.onError(ORMError.notDefineDATAStack.error)
         return Disposables.create()
       }
       
@@ -200,7 +226,7 @@ public extension CoredataMappable where Self: CoredataProvider {
     return Observable<Void>.create({ [weak self] observer -> Disposable in
       
       guard let stack = self?.dataStack else {
-        observer.onError(NSError.define(description: "ormWriteError"))
+        observer.onError(ORMError.notDefineDATAStack.error)
         return Disposables.create()
       }
       
@@ -236,7 +262,7 @@ public extension CoredataFetcher where Self: CoredataProvider {
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: sortField, ascending: asc ?? true)]
       }
       
-      let fetchedResults = try dataStack.mainContext.fetch(fetchRequest)
+      let fetchedResults = try mainContext().fetch(fetchRequest)
       
       return fetchedResults.flatMap { model -> T? in
         let json = model.toJSON()
@@ -257,7 +283,7 @@ public extension CoredataFetcher where Self: CoredataProvider {
       let fetchRequest : NSFetchRequest<U> = NSFetchRequest(entityName: entityName)
       
       fetchRequest.predicate = predicate
-      let fetchedResults = try self.dataStack.mainContext.fetch(fetchRequest)
+      let fetchedResults = try mainContext().fetch(fetchRequest)
 
       return fetchedResults.flatMap { model -> T? in
         let json = model.toJSON()
@@ -282,7 +308,7 @@ public extension CoredataFetcher where Self: CoredataProvider {
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: sortField, ascending: asc ?? true)]
       }
       
-      return try self.dataStack.mainContext.fetch(fetchRequest)
+      return try mainContext().fetch(fetchRequest)
     } catch {
       return nil
     }
@@ -294,7 +320,7 @@ public extension CoredataFetcher where Self: CoredataProvider {
       let fetchRequest : NSFetchRequest<T> = NSFetchRequest(entityName: entityName)
       fetchRequest.predicate = predicate
       
-      return try self.dataStack.mainContext.fetch(fetchRequest).first
+      return try mainContext().fetch(fetchRequest).first
     } catch {
       return nil
     }
@@ -311,7 +337,7 @@ public extension CoredataDeletable where Self: CoredataProvider {
     return Observable<Void>.create({ [weak self] observer -> Disposable in
       
       guard let stack = self?.dataStack else {
-        observer.onError(NSError.define(description: "ormWriteError"))
+        observer.onError(ORMError.notDefineDATAStack.error)
         return Disposables.create()
       }
       

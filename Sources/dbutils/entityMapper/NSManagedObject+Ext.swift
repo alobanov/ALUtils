@@ -54,6 +54,10 @@ public extension NSManagedObject {
         insertedOrUpdatedObjects = [inserted]
       }
       
+      if context.hasChanges {
+        try context.save()
+      }
+      
       return insertedOrUpdatedObjects
     } catch {
       abort()

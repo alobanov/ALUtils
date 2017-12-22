@@ -85,7 +85,7 @@ public class EntityMapper<BaseType: NSManagedObjectMappable> {
       if let result = result {
         return result
       } else {
-        throw(NSError(domain: "Error", code: 0, userInfo: nil))
+        throw ORMError.failedMapObject(objectTypeStr: "\(BaseType.self)").error
       }
     } catch (let e) {
       throw e as NSError
