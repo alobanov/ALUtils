@@ -70,7 +70,6 @@ public class EditOperation: AsyncOperation {
   }
   
   public func run() {
-    print("DB = 1. run edit operation")
     dataStack.performBackgroundTask { [weak self] context in
       guard let sSelf = self else {
         return
@@ -81,7 +80,6 @@ public class EditOperation: AsyncOperation {
         }
         if let block = sSelf.completion {
           do {
-            print("DB = 2. save context data")
             try context.save()
             block(nil)
           } catch let saveError {
@@ -89,7 +87,6 @@ public class EditOperation: AsyncOperation {
           }
         }
         
-        print("DB = 3. Exit from operation")
         sSelf.cancel()
       }, onError: {[weak self] error in
         guard let sSelf = self else {
@@ -99,7 +96,6 @@ public class EditOperation: AsyncOperation {
           block(error as NSError)
         }
         
-        print("DB = 4. Exit from operation failure")
         sSelf.cancel()
       }).disposed(by: sSelf.bag)
     }

@@ -121,8 +121,4 @@ public class EntityMapper<BaseType: NSManagedObjectMappable> {
     let relationKey = relationDescription.customKey() ?? relation.toSnakeCase()
     return relationKey
   }
-  
-  deinit {
-    print("dead EntityMapper")
-  }
 }
