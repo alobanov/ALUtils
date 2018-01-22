@@ -1,9 +1,9 @@
 //
 //  SyncSaveOperations.swift
-//  Puls
+//  ALUtils
 //
 //  Created by Lobanov Aleksey on 28/09/2017.
-//  Copyright © 2017 MOPC. All rights reserved.
+//  Copyright © 2017 ALUtils. All rights reserved.
 //
 
 import Foundation

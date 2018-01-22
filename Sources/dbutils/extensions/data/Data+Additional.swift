@@ -1,9 +1,9 @@
 //
 //  Data+Additional.swift
-//  Puls
+//  ALUtils
 //
-//  Created by MOPC on 03/08/2017.
-//  Copyright © 2017 MOPC. All rights reserved.
+//  Created by Aleksey Lobanov on 03/08/2017.
+//  Copyright © 2017 ALUtils. All rights reserved.
 //
 
 import Foundation

@@ -1,9 +1,9 @@
 //
 //  CellIdentifiable.swift
-//  Pulse
+//  ALUtilse
 //
-//  Created by MOPC on 09.10.16.
-//  Copyright © 2016 MOPC Lab. All rights reserved.
+//  Created by Aleksey Lobanov on 09.10.16.
+//  Copyright © 2016 Aleksey Lobanov Lab. All rights reserved.
 //
 
 import UIKit

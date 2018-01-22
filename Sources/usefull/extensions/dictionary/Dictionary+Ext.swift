@@ -1,9 +1,9 @@
 //
 //  Dictionary+Ext.swift
-//  Pulse
+//  ALUtilse
 //
-//  Created by MOPC on 19.04.17.
-//  Copyright © 2017 MOPC Lab. All rights reserved.
+//  Created by Aleksey Lobanov on 19.04.17.
+//  Copyright © 2017 ALUtils Lab. All rights reserved.
 //
 
 import Foundation

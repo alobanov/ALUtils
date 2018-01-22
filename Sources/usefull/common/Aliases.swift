@@ -1,9 +1,9 @@
 //
 //  Aliases.swift
-//  Puls
+//  ALUtils
 //
-//  Created by MOPC on 08/08/2017.
-//  Copyright © 2017 MOPC. All rights reserved.
+//  Created by Aleksey Lobanov on 08/08/2017.
+//  Copyright © 2017 ALUtils. All rights reserved.
 //
 
 import Foundation
