@@ -117,7 +117,7 @@ public extension CoredataCleanable  where Self: CoredataProvider {
             let deleteAllRequest = NSBatchDeleteRequest(fetchRequest: request)
             try context.execute(deleteAllRequest)
           }
-          observer.onNext()
+          observer.onNext(())
           observer.onCompleted()
         } catch let(err) {
           observer.onError(err)
@@ -158,7 +158,7 @@ public extension CoredataMappable where Self: CoredataProvider {
       
       var models: [ReturnType] = []
       let op = EditOperation(action: { context -> Observable<Void> in
-        return Observable<Void>.just()
+        return Observable<Void>.just(())
           .map({ _ -> [T] in
             let mapper = EntityMapper<T>(context: context)
             let entities = try mapper.mapArray(objects: jsonArray)
@@ -200,7 +200,7 @@ public extension CoredataMappable where Self: CoredataProvider {
       }
       
       let op = EditOperation(action: { context -> Observable<Void> in
-        return Observable<Void>.just()
+        return Observable<Void>.just(())
           .map({ _ -> [T] in
             let mapper = EntityMapper<T>(context: context)
             let entities = try mapper.mapArray(objects: jsonArray)
@@ -212,7 +212,7 @@ public extension CoredataMappable where Self: CoredataProvider {
         if let existErr = error {
           observer.onError(existErr)
         } else {
-          observer.onNext()
+          observer.onNext(())
           observer.onCompleted()
         }
       }
@@ -235,7 +235,7 @@ public extension CoredataMappable where Self: CoredataProvider {
         if let existErr = error {
           observer.onError(existErr)
         } else {
-          observer.onNext()
+          observer.onNext(())
           observer.onCompleted()
         }
       }
@@ -346,7 +346,7 @@ public extension CoredataDeletable where Self: CoredataProvider {
         if let existErr = error {
           observer.onError(existErr)
         } else {
-          observer.onNext()
+          observer.onNext(())
           observer.onCompleted()
         }
       }

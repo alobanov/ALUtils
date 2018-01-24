@@ -116,7 +116,7 @@ class ViewController: UIViewController {
             entity.name = "asdasdasdasdasdadad"
           }
           
-          return Observable.just()
+          return Observable.just(())
         } catch (let e) {
           return Observable.error(e)
         }
