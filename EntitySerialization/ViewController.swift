@@ -55,8 +55,8 @@ class ViewController: UIViewController {
                                   "dateValue": "2012-10-11T23:14:00+05:00", "floatValue": 3.34,
                                   "double_value": 3.23421, "binaryValue": NSNull(), "decimalValue": 43.3,
                                   "date": "2012-10-11T23:14:00+00:00"],
-                                 ["id": 2, "boolValue": true,
-                                  "dateValue": "2012-10-11T23:14:00+05:00", "floatValue": 3.123456789,
+                                 ["id": 1, "boolValue": true,
+                                  "dateValue": "2012-10-11T23:14:00+05:00", "floatValue": 777.2,
                                   "double_value": 3.123456789, "binaryValue": NSNull(), "decimalValue": 43.123456789,
                                   "date": "2012-10-11T23:14:00+00:00"]]],
       ["id": 4, "name": "Lotro Bregich",
@@ -113,7 +113,7 @@ class ViewController: UIViewController {
           let objects: [AbilityEntity] = try NSManagedObject.createOrUpdateEntities(context: context, pkKey: "id", id: 5)
           
           for entity in objects {
-            entity.name = "asdasdasdasdasdadad"
+            entity.name = "aaaaa"
           }
           
           return Observable.just(())

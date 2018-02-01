@@ -20,13 +20,17 @@ public class EntityMapper<BaseType: NSManagedObjectMappable> {
   public static func map<T: NSManagedObjectMappable>(type:T.Type, object: [String: Any], context: NSManagedObjectContext) throws -> T {
     let key = T.primaryKey()
     do {
-      let objects: [T] = try T.createOrUpdateEntities(context: context, pkKey: key, id: object[key] ?? 0)
       
-      for entity in objects {
-        try entity.map(object: object, context: context)
+      let entityName = String(describing: T.self)
+      let entity = context.safeObject(entityName, localPrimaryKey: object[key] ?? 0, pkKey: key) ?? NSEntityDescription.insertNewObject(forEntityName: entityName, into: context)
+      
+      if let e = entity as? T {
+        try e.map(object: object, context: context)
+        return e
+      } else {
+        throw NSError.define(description: "Wrong entity type")
       }
       
-      return objects.first!
     } catch (let e) {
       throw e as NSError
     }

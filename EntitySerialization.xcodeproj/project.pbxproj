@@ -40,6 +40,7 @@
 		E899B9761FD6712400FAEB1B /* Data+Additional.swift in Sources */ = {isa = PBXBuildFile; fileRef = E899B9751FD6712400FAEB1B /* Data+Additional.swift */; };
 		E899B9791FD6715E00FAEB1B /* Dictionary+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E899B9781FD6715E00FAEB1B /* Dictionary+Ext.swift */; };
 		E899B97C1FD6719200FAEB1B /* UIView+XibDesignable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E899B97B1FD6719200FAEB1B /* UIView+XibDesignable.swift */; };
+		E8DE2DB42022E157009071EA /* NSManageObjectContext+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DE2DB32022E157009071EA /* NSManageObjectContext+Ext.swift */; };
 		F2E909993CCFF01D8E61AD20 /* Pods_EntitySerialization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C0C3215FF19D71CBBBA14FA /* Pods_EntitySerialization.framework */; };
 /* End PBXBuildFile section */
 
@@ -94,6 +95,7 @@
 		E899B9751FD6712400FAEB1B /* Data+Additional.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Additional.swift"; sourceTree = "<group>"; };
 		E899B9781FD6715E00FAEB1B /* Dictionary+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Ext.swift"; sourceTree = "<group>"; };
 		E899B97B1FD6719200FAEB1B /* UIView+XibDesignable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+XibDesignable.swift"; sourceTree = "<group>"; };
+		E8DE2DB32022E157009071EA /* NSManageObjectContext+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManageObjectContext+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -251,6 +253,7 @@
 				E899B9481FD5B13B00FAEB1B /* NSPropertyDescription+Ext.swift */,
 				E899B9491FD5B13B00FAEB1B /* NSManagedObject+Ext.swift */,
 				E899B94A1FD5B13B00FAEB1B /* NSEntityDescription+Ext.swift */,
+				E8DE2DB32022E157009071EA /* NSManageObjectContext+Ext.swift */,
 			);
 			path = entityMapper;
 			sourceTree = "<group>";
@@ -559,6 +562,7 @@
 				E899B9761FD6712400FAEB1B /* Data+Additional.swift in Sources */,
 				E804E26E1FBEF1E7007F7DF2 /* Atlantis.swift in Sources */,
 				E899B9681FD66EB000FAEB1B /* CellIdentifiable.swift in Sources */,
+				E8DE2DB42022E157009071EA /* NSManageObjectContext+Ext.swift in Sources */,
 				E899B95E1FD5B4CE00FAEB1B /* Error+Additions.swift in Sources */,
 				E804E26C1FBEEBE8007F7DF2 /* InfoEntity+Additions.swift in Sources */,
 				E804E2331FBEB086007F7DF2 /* ViewController.swift in Sources */,
