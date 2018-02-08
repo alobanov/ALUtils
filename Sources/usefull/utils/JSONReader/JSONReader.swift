@@ -35,7 +35,7 @@ public class JSONReader {
   }
 
   public class func readJSONData(_ filename: String, forClass: AnyClass = JSONReader.self) -> Data {
-    return FileReader.readFileData(filename, fileExtension: "json")
+    return FileReader.readFileData(filename, fileExtension: "json", forClass: forClass)
   }
 
 }
