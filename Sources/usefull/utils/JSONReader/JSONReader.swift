@@ -15,9 +15,9 @@ public class JSONReader {
     return Mapper<T>().map(JSONString: JSONReader.readJSONString(filename)!)
   }
   
-  public class func readFromJSON(_ filename: String) -> [String: AnyObject]? {
+  public class func readFromJSON(_ filename: String, forClass: AnyClass = JSONReader.self) -> [String: AnyObject]? {
     do {
-      let data = JSONReader.readJSONData(filename)
+      let data = JSONReader.readJSONData(filename, forClass: forClass)
 
       guard let result = try JSONSerialization
         .jsonObject(with: data, options: []) as? [String: AnyObject] else {
@@ -30,11 +30,11 @@ public class JSONReader {
     }
   }
 
-  public class func readJSONString(_ filename: String) -> String? {
-    return String(data: readJSONData(filename), encoding: String.Encoding.utf8)
+  public class func readJSONString(_ filename: String, forClass: AnyClass = JSONReader.self) -> String? {
+    return String(data: readJSONData(filename, forClass: forClass), encoding: String.Encoding.utf8)
   }
 
-  public class func readJSONData(_ filename: String) -> Data {
+  public class func readJSONData(_ filename: String, forClass: AnyClass = JSONReader.self) -> Data {
     return FileReader.readFileData(filename, fileExtension: "json")
   }
 

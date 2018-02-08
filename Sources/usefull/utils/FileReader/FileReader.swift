@@ -9,8 +9,8 @@
 import Foundation
 
 public class FileReader {
-  public class func readFileData(_ filename: String, fileExtension: String) -> Data {
-    if let path = Bundle(for: self).path(forResource: filename, ofType: fileExtension) {
+  public class func readFileData(_ filename: String, fileExtension: String, forClass: AnyClass = FileReader.self) -> Data {
+    if let path = Bundle(for: forClass).path(forResource: filename, ofType: fileExtension) {
       do {
         let data = try Data(contentsOf: URL(fileURLWithPath: path),
                               options: NSData.ReadingOptions.mappedIfSafe)
@@ -24,7 +24,7 @@ public class FileReader {
     return Data()
   }
 
-  public class func readFileString(_ filename: String, fileExtension: String) -> String {
+  public class func readFileString(_ filename: String, fileExtension: String, forClass: AnyClass = FileReader.self) -> String {
     return String(data: readFileData(filename, fileExtension: fileExtension),
                   encoding: String.Encoding.utf8) ?? ""
   }
