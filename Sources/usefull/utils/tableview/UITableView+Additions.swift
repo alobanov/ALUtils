@@ -9,6 +9,8 @@
 import UIKit
 
 public extension UITableView {
+  typealias RegisterClass = (anyClass: AnyClass?, id: String)
+  
   func setupEstimatedRowHeight(height: CGFloat? = nil) {
     rowHeight = UITableViewAutomaticDimension
     estimatedRowHeight = height ?? 60.0
@@ -33,6 +35,16 @@ public extension UITableView {
     for identifier in identifiers {
       register(UINib(nibName: identifier, bundle: bundle),
                forCellReuseIdentifier: identifier)
+    }
+  }
+  
+  func registerClass(anyClass: AnyClass?, identifier: String) {
+    register(anyClass, forCellReuseIdentifier: identifier)
+  }
+  
+  func registerClasses(anyClasses: [RegisterClass]) {
+    for item in anyClasses {
+      registerClass(anyClass: item.anyClass, identifier: item.id)
     }
   }
 }

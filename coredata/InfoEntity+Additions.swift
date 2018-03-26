@@ -29,12 +29,12 @@ public class InfoEntity: NSManagedObject, NSManagedObjectMappable {
     self.id = Int64(object.int(by: "id") ?? 0)
     self.boolValue = object.bool(by: "boolValue") ?? false
     
-    self.dateValue = object.date(by: "dateValue", dateFormat: nil, gmt: false) as NSDate?
+    self.dateValue = object.date(by: "dateValue", dateFormat: nil, gmt: false)
     
     self.date = object.string(by: "date")
     self.floatValue = object.float(by: "floatValue") ?? 0
     self.doubleValue = object.double(by: "double_value") ?? 0
-    self.binaryValue = object.data(by: "binaryValue") as! NSData
+    self.binaryValue = object.data(by: "binaryValue")
     self.decimalValue = object.decimal(by: "decimalValue")
   }
 }
