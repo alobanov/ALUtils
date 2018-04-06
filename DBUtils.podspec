@@ -21,9 +21,9 @@ Pod::Spec.new do |s|
 
   s.subspec "DBUtils" do |ss|
     ss.source_files  = "Sources/dbutils/**/*.swift"
-    ss.dependency = "ALUtils/Utils" 
     ss.framework  = "Foundation"
     ss.framework  = "CoreData"
+    ss.dependency "ALUtils/Utils"
   end
 
   s.subspec "Utils" do |ss|
