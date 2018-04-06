@@ -192,30 +192,10 @@
 		E81497881FD67672001602B6 /* dbutils */ = {
 			isa = PBXGroup;
 			children = (
-				E81497891FD676A5001602B6 /* extensions */,
 				E899B94D1FD5B13B00FAEB1B /* jsonEntityExporter */,
 				E899B9461FD5B13B00FAEB1B /* entityMapper */,
 			);
 			path = dbutils;
-			sourceTree = "<group>";
-		};
-		E81497891FD676A5001602B6 /* extensions */ = {
-			isa = PBXGroup;
-			children = (
-				E87DD7D61FDAF3E300556E90 /* formatter */,
-				E899B9741FD6711800FAEB1B /* data */,
-				E814978A1FD676C6001602B6 /* dictionary */,
-				E899B9801FD672C800FAEB1B /* string */,
-			);
-			path = extensions;
-			sourceTree = "<group>";
-		};
-		E814978A1FD676C6001602B6 /* dictionary */ = {
-			isa = PBXGroup;
-			children = (
-				E814978B1FD676DA001602B6 /* Dictionary+Additions.swift */,
-			);
-			path = dictionary;
 			sourceTree = "<group>";
 		};
 		E814978D1FD677BF001602B6 /* usefull */ = {
@@ -261,6 +241,9 @@
 		E899B94C1FD5B13B00FAEB1B /* extensions */ = {
 			isa = PBXGroup;
 			children = (
+				E899B9741FD6711800FAEB1B /* data */,
+				E899B9801FD672C800FAEB1B /* string */,
+				E87DD7D61FDAF3E300556E90 /* formatter */,
 				E899B97D1FD6719F00FAEB1B /* error */,
 				E899B97A1FD6718B00FAEB1B /* view */,
 				E899B9771FD6715800FAEB1B /* dictionary */,
@@ -332,6 +315,7 @@
 		E899B9771FD6715800FAEB1B /* dictionary */ = {
 			isa = PBXGroup;
 			children = (
+				E814978B1FD676DA001602B6 /* Dictionary+Additions.swift */,
 				E899B9781FD6715E00FAEB1B /* Dictionary+Ext.swift */,
 			);
 			path = dictionary;
