@@ -9,7 +9,7 @@
 import Foundation
 
 public extension Formatter {
-  static let frmttrGMT: DateFormatter = {
+  static let frmttrGMT0: DateFormatter = {
     let formatter = DateFormatter()
     formatter.calendar = Calendar(identifier: .iso8601)
     formatter.locale = Locale(identifier: "en_US_POSIX")
@@ -23,20 +23,22 @@ public extension Formatter {
     formatter.locale = Locale(identifier: "en_US_POSIX")
     return formatter
   }()
-}
-
-public extension Date {
-  func iso8601(format: String?, gmt: Bool) -> String? {
-    let frmttr = gmt ? DateFormatter.frmttrGMT : DateFormatter.frmttr
-    frmttr.dateFormat = format ?? "yyyy-MM-dd HH:mm:ss"
-    return frmttr.string(from: self)
-  }
-}
-
-public extension String {
-  func iso8601(format: String?, gmt: Bool) -> Date? {
-    let frmttr = gmt ? DateFormatter.frmttrGMT : DateFormatter.frmttr
-    frmttr.dateFormat = format ?? "yyyy-MM-dd HH:mm:ss"
-    return frmttr.date(from: self)
-  }
+  
+  static let currencyFiat: NumberFormatter = {
+    let formatter = NumberFormatter()
+    formatter.groupingSeparator = " "
+    formatter.numberStyle = .decimal
+    formatter.decimalSeparator = "."
+    formatter.maximumFractionDigits = 2
+    return formatter
+  }()
+  
+  static let currencyCrypto: NumberFormatter = {
+    let formatter = NumberFormatter()
+    formatter.groupingSeparator = " "
+    formatter.numberStyle = .decimal
+    formatter.maximumFractionDigits = 8
+    formatter.decimalSeparator = "."
+    return formatter
+  }()
 }

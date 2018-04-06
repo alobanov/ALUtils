@@ -264,7 +264,7 @@ public extension CoredataFetcher where Self: CoredataProvider {
       
       let fetchedResults = try mainContext().fetch(fetchRequest)
       
-      return fetchedResults.flatMap { model -> T? in
+      return fetchedResults.compactMap { model -> T? in
         let json = model.toJSON()
         if let obj: T = Mapper<T>().map(JSON: json) {
           return obj
@@ -285,7 +285,7 @@ public extension CoredataFetcher where Self: CoredataProvider {
       fetchRequest.predicate = predicate
       let fetchedResults = try mainContext().fetch(fetchRequest)
 
-      return fetchedResults.flatMap { model -> T? in
+      return fetchedResults.compactMap { model -> T? in
         let json = model.toJSON()
         if let obj: T = Mapper<T>().map(JSON: json) {
           return obj

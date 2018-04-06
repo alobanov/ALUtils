@@ -116,7 +116,7 @@ public class EntityMapper<BaseType: NSManagedObjectMappable> {
   private func checkRelationKey<T: NSManagedObject>(type: T.Type, relation: String) -> String? {
     let entityName = String(describing: T.self)
     guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: context),
-      let relationDescription = entity.relationships().flatMap({ item -> NSRelationshipDescription? in
+      let relationDescription = entity.relationships().compactMap({ item -> NSRelationshipDescription? in
         return item.name == relation ? item : nil
       }).first
       else {
