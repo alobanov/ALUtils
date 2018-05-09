@@ -24,19 +24,21 @@ public extension Formatter {
     return formatter
   }()
   
-  static let currencyFiat: NumberFormatter = {
+  static let fiat: NumberFormatter = {
     let formatter = NumberFormatter()
     formatter.groupingSeparator = " "
     formatter.numberStyle = .decimal
     formatter.decimalSeparator = "."
     formatter.maximumFractionDigits = 2
+    formatter.minimumFractionDigits = 2
     return formatter
   }()
   
-  static let currencyCrypto: NumberFormatter = {
+  static let crypto: NumberFormatter = {
     let formatter = NumberFormatter()
     formatter.groupingSeparator = " "
     formatter.numberStyle = .decimal
+    formatter.maximumFractionDigits = 4
     formatter.maximumFractionDigits = 8
     formatter.decimalSeparator = "."
     return formatter
