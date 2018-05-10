@@ -9,12 +9,13 @@
 import Foundation
 
 public extension NSError {
-  public static func define(description: String, failureReason: String = "", code: Int = 1) -> NSError {
+  public static func define(description: String, failureReason: String = "", code: Int = 0) -> NSError {
     let userInfo = [
       NSLocalizedDescriptionKey: description,
       NSLocalizedFailureReasonErrorKey: failureReason
     ]
     
-    return NSError(domain: "ru.alobanov", code: code, userInfo: userInfo)
+    let domain = Bundle.main.bundleIdentifier ?? "ru.alutils"
+    return NSError(domain: domain, code: code, userInfo: userInfo)
   }
 }

@@ -12,14 +12,14 @@ import RxSwift
 public class ALSchedulers {
   public static let shared = ALSchedulers()
 
-  public let backgroundScheduler: ImmediateSchedulerType
-  public let mainScheduler: SerialDispatchQueueScheduler
+  public let background: ImmediateSchedulerType
+  public let main: SerialDispatchQueueScheduler
 
   private init() {
     let operationQueue = OperationQueue()
     operationQueue.maxConcurrentOperationCount = 1
     operationQueue.qualityOfService = .userInitiated
-    backgroundScheduler = OperationQueueScheduler(operationQueue: operationQueue)
-    mainScheduler = MainScheduler.instance
+    background = OperationQueueScheduler(operationQueue: operationQueue)
+    main = MainScheduler.instance
   }
 }

@@ -124,7 +124,7 @@ public extension CoredataCleanable  where Self: CoredataProvider {
         }
       })
       return Disposables.create()
-    }).observeOn(ALSchedulers.shared.mainScheduler)
+    }).observeOn(ALSchedulers.shared.main)
   }
   
 }
@@ -188,7 +188,7 @@ public extension CoredataMappable where Self: CoredataProvider {
       
       self?.serialOperationQueue.addOperation(op)
       return Disposables.create()
-    }).observeOn(ALSchedulers.shared.mainScheduler)
+    }).observeOn(ALSchedulers.shared.main)
   }
 
   func mapArray<T: NSManagedObjectMappable>(_ type: T.Type, jsonArray: JSONArrayDictionary) -> Observable<Void> {
@@ -219,7 +219,7 @@ public extension CoredataMappable where Self: CoredataProvider {
       
       self?.serialOperationQueue.addOperation(op)
       return Disposables.create()
-    }).observeOn(ALSchedulers.shared.mainScheduler)
+    }).observeOn(ALSchedulers.shared.main)
   }
   
   func edit(_ closure: @escaping EditOperation.ActionClosure) -> Observable<Void> {
@@ -241,7 +241,7 @@ public extension CoredataMappable where Self: CoredataProvider {
       }
       self?.serialOperationQueue.addOperation(op)
       return Disposables.create()
-    }).observeOn(ALSchedulers.shared.mainScheduler)
+    }).observeOn(ALSchedulers.shared.main)
   }
   
 }
@@ -353,7 +353,7 @@ public extension CoredataDeletable where Self: CoredataProvider {
       
       self?.serialOperationQueue.addOperation(op)
       return Disposables.create()
-    }).observeOn(ALSchedulers.shared.mainScheduler)
+    }).observeOn(ALSchedulers.shared.main)
   }
   
 }
