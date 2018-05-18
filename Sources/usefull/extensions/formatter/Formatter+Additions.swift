@@ -28,6 +28,7 @@ public extension Formatter {
     let formatter = NumberFormatter()
     formatter.groupingSeparator = " "
     formatter.numberStyle = .decimal
+    formatter.roundingMode = NumberFormatter.RoundingMode.floor
     formatter.decimalSeparator = "."
     formatter.maximumFractionDigits = 2
     formatter.minimumFractionDigits = 2
@@ -38,7 +39,8 @@ public extension Formatter {
     let formatter = NumberFormatter()
     formatter.groupingSeparator = " "
     formatter.numberStyle = .decimal
-    formatter.maximumFractionDigits = 4
+    formatter.roundingMode = NumberFormatter.RoundingMode.floor
+    formatter.minimumFractionDigits = 4
     formatter.maximumFractionDigits = 8
     formatter.decimalSeparator = "."
     return formatter
