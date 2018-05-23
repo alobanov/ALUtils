@@ -10,20 +10,13 @@ import Foundation
 import CoreData
 
 public extension NSManagedObjectContext {
-  /**
-   Safely fetches a NSManagedObject in the current context. If no localPrimaryKey is provided then it will check for the parent entity and use that. Otherwise it will return nil.
-   - parameter entityName: The name of the Core Data entity.
-   - parameter localPrimaryKey: The primary key.
-   - parameter parent: The parent of the object.
-   - parameter parentRelationshipName: The name of the relationship with the parent.
-   - returns: A NSManagedObject contained in the provided context.
-   */
-  public func safeObject(_ entityName: String, localPrimaryKey: Any?, pkKey: String) -> NSManagedObject? {
+
+  public func safeObject(_ entityName: String, pKey: String, value: Any) -> NSManagedObject? {
     var result: NSManagedObject?
     
-    if let localPrimaryKey = localPrimaryKey as? NSObject {
+    if let value = value as? NSObject {
       let request = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
-      request.predicate = NSPredicate(format: "%K = %@", pkKey, localPrimaryKey)
+      request.predicate = NSPredicate(format: "%K = %@", pKey, value)
       do {
         let objects = try fetch(request)
         result = objects.first as? NSManagedObject
@@ -34,4 +27,52 @@ public extension NSManagedObjectContext {
     
     return result
   }
+  
+  @discardableResult public func mapObject<MapType:NSManagedObjectMappable>(type: MapType.Type, from json: [String: Any]) throws -> MapType {
+    do {
+      let entityName = String(describing: MapType.self)
+      let pKey = MapType.primaryKey()
+      guard let pKeyValue = json[pKey] else {
+        throw NSError.define(description: "json doesn't contain value for primary key \(pKey)")
+      }
+      let mo = safeObject(entityName, pKey: pKey, value: pKeyValue) ?? NSEntityDescription.insertNewObject(forEntityName: entityName, into: self)
+      if let typedMo = mo as? MapType {
+        try typedMo.map(from: json)
+        return typedMo
+      } else {
+        throw NSError.define(description: "entity \(mo) dosent conform to NSManagedObjectMappable protocol")
+      }
+    } catch (let e) {
+      throw e as NSError
+    }
+  }
+  
+  @discardableResult public func mapArray<MapType: NSManagedObjectMappable>(type: MapType.Type, from objects: [[String: Any]]) throws -> [MapType] {
+    do {
+      var operations = [MapType]()
+      for obj in objects {
+        let operation: MapType = try mapObject(type: MapType.self, from: obj)
+        operations.append(operation)
+      }
+      return operations
+    } catch (let e) {
+      throw e as NSError
+    }
+  }
+  
+  public func delete(pkValue: NSObject, pkName: String, inEntityNamed entityName: String) throws {
+    guard NSEntityDescription.entity(forEntityName: entityName, in: self) != nil else {
+      throw NSError.define(description: "Failed to retrive entity named \(entityName)")
+    }
+    let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName)
+    fetchRequest.predicate = NSPredicate(format: "%K = %@", pkName, pkValue)
+    
+    let objects = try self.fetch(fetchRequest)
+    guard objects.count > 0 else { return }
+    
+    for deletedObject in objects {
+      self.delete(deletedObject)
+    }
+  }
+  
 }

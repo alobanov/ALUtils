@@ -11,24 +11,14 @@ import CoreData
 
 extension NSEntityDescription {
   func relationships() -> [NSRelationshipDescription] {
-    var relationships = [NSRelationshipDescription]()
-    for propertyDescription in properties {
-      if let relationshipDescription = propertyDescription as? NSRelationshipDescription {
-        relationships.append(relationshipDescription)
-      }
-    }
-    
-    return relationships
+    return properties.compactMap({ property -> NSRelationshipDescription? in
+      return property as? NSRelationshipDescription
+    })
   }
   
   func attributes() -> [NSAttributeDescription] {
-    var attributes = [NSAttributeDescription]()
-    for propertyDescription in properties {
-      if let attributeDescription = propertyDescription as? NSAttributeDescription {
-        attributes.append(attributeDescription)
-      }
-    }
-    
-    return attributes
+    return properties.compactMap({ property -> NSAttributeDescription? in
+      return property as? NSAttributeDescription
+    })
   }
 }

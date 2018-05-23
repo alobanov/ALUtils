@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17C88" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="AbilityEntity" representedClassName="AbilityEntity" syncable="YES" codeGenerationType="category">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14133" systemVersion="17E202" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="AbilityEntity" representedClassName="AbilityEntity" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES">
             <userInfo>
                 <entry key="exportKey" value="xaxaxaBeach"/>
@@ -11,7 +11,7 @@
                 <entry key="exportKey" value="destroy"/>
             </userInfo>
         </attribute>
-        <relationship name="iii" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="InfoEntity" inverseName="ability1" inverseEntity="InfoEntity" syncable="YES"/>
+        <relationship name="infoItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="InfoEntity" inverseName="ability1" inverseEntity="InfoEntity" syncable="YES"/>
         <relationship name="infoItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="InfoEntity" inverseName="ability" inverseEntity="InfoEntity" syncable="YES">
             <userInfo>
                 <entry key="exportKey" value="info_items"/>
@@ -43,7 +43,7 @@
             </userInfo>
         </relationship>
     </entity>
-    <entity name="InfoEntity" representedClassName="InfoEntity" syncable="YES" codeGenerationType="category">
+    <entity name="InfoEntity" representedClassName="InfoEntity" syncable="YES" codeGenerationType="class">
         <attribute name="binaryValue" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="boolValue" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="String" valueTransformerName="StringToDateTransformer" syncable="YES">
@@ -65,7 +65,7 @@
         <attribute name="floatValue" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="ability" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AbilityEntity" inverseName="infoItems" inverseEntity="AbilityEntity" syncable="YES"/>
-        <relationship name="ability1" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AbilityEntity" inverseName="iii" inverseEntity="AbilityEntity" syncable="YES">
+        <relationship name="ability1" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AbilityEntity" inverseName="infoItem" inverseEntity="AbilityEntity" syncable="YES">
             <userInfo>
                 <entry key="export" value="false"/>
             </userInfo>
@@ -84,11 +84,11 @@
         </relationship>
     </entity>
     <elements>
-        <element name="AbilityEntity" positionX="-299" positionY="342" width="128" height="105"/>
+        <element name="AbilityEntity" positionX="-308" positionY="396" width="128" height="103"/>
         <element name="CharacterEntity" positionX="-578" positionY="78" width="128" height="135"/>
-        <element name="EnemyEntity" positionX="-101" positionY="171" width="128" height="58"/>
-        <element name="HeroEntity" positionX="-362" positionY="45" width="128" height="60"/>
-        <element name="InfoEntity" positionX="-522" positionY="207" width="128" height="195"/>
-        <element name="UniverseEntity" positionX="-738" positionY="279" width="128" height="90"/>
+        <element name="EnemyEntity" positionX="-468" positionY="-139" width="128" height="58"/>
+        <element name="HeroEntity" positionX="-290" positionY="39" width="128" height="60"/>
+        <element name="InfoEntity" positionX="-569" positionY="306" width="128" height="193"/>
+        <element name="UniverseEntity" positionX="-774" positionY="126" width="128" height="90"/>
     </elements>
 </model>

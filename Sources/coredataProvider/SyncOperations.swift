@@ -27,10 +27,8 @@ public class SaveArrayOperation<T: NSManagedObjectMappable>: AsyncOperation {
   
   public func save() {
     self.dataStack.performBackgroundTask { [weak self] context in
-      let mapper = EntityMapper<T>(context: context)
       do {
-        try mapper.mapArray(objects: self?.json ?? [])
-        
+        try context.mapArray(type: T.self, from: self?.json ?? [])
         if let block = self?.completion {
           do {
             try context.save()
@@ -127,7 +125,9 @@ public class DeleteArrayOperation<T: NSManagedObject>: AsyncOperation {
       do {
         let entityName = String(describing: ManageObject.self)
         for id in sSelf.ids {
-          try NSManagedObject.delete(id, primaryKey: self?.primaryKey ?? "", inEntityNamed: entityName, using: context)
+          if let id = id as? NSObject {
+            try context.delete(pkValue: id, pkName: sSelf.primaryKey, inEntityNamed: entityName)
+          }
         }
         if let block = sSelf.completion {
           do {

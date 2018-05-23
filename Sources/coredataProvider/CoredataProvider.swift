@@ -41,10 +41,10 @@ enum ORMError {
 
 public protocol CoredataMappable {
   func mapObject<T: NSManagedObjectMappable>(_ type: T.Type, json: JSONDictionary) -> Observable<Void>
-  func mapAndReturnObject<T: NSManagedObjectMappable, ReturnType: Mappable>(_ type: T.Type, returnType: ReturnType.Type, json: JSONDictionary) -> Observable<ReturnType>
+  func mapAndReturnObject<T: NSManagedObjectMappable & NSManagedObjectExportable, ReturnType: Mappable>(_ type: T.Type, returnType: ReturnType.Type, json: JSONDictionary) -> Observable<ReturnType> where T: NSManagedObject
   func mapArray<T: NSManagedObjectMappable>(_ type: T.Type, jsonArray: JSONArrayDictionary) -> Observable<Void>
-  func mapAndReturnArray <T: NSManagedObjectMappable, ReturnType: Mappable>
-  (_ type: T.Type, returnType: ReturnType.Type, jsonArray: JSONArrayDictionary) -> Observable<[ReturnType]>
+  func mapAndReturnArray <T: NSManagedObjectMappable & NSManagedObjectExportable, ReturnType: Mappable>
+  (_ type: T.Type, returnType: ReturnType.Type, jsonArray: JSONArrayDictionary) -> Observable<[ReturnType]> where T: NSManagedObject
   func edit(_ closure: @escaping EditOperation.ActionClosure) -> Observable<Void>
 }
 
@@ -54,11 +54,11 @@ public protocol CoredataDeletable {
 }
 
 public protocol CoredataFetcher {
-  func models<T: Mappable, U: NSManagedObject>(type: U.Type, predicate: NSPredicate, sortBy: String?, asc: Bool?) -> [T]?
-  func firstModel<T: Mappable, U: NSManagedObject>(type: U.Type, predicate: NSPredicate) -> T?
+  func models<T: Mappable, U: NSManagedObject & NSManagedObjectExportable>(type: U.Type, predicate: NSPredicate, sortBy: String?, asc: Bool?) throws -> [T]
+  func firstModel<T: Mappable, U: NSManagedObject & NSManagedObjectExportable>(type: U.Type, predicate: NSPredicate) throws -> T?
   
-  func objects<T: NSManagedObject>(type: T.Type, predicate: NSPredicate, sortBy: String?, asc: Bool?) -> [T]?
-  func firstObject<T: NSManagedObject>(type: T.Type, predicate: NSPredicate) -> T?
+  func objects<T: NSManagedObject>(type: T.Type, predicate: NSPredicate, sortBy: String?, asc: Bool?) throws -> [T]
+  func firstObject<T: NSManagedObject>(type: T.Type, predicate: NSPredicate) throws -> T?
   
   func mainContext() -> NSManagedObjectContext
 }
@@ -67,7 +67,9 @@ public protocol CoredataCleanable {
   func clean(doNotDeleteEntities:[NSManagedObject.Type]) -> Observable<Void>
 }
 
-public class CoredataProvider: CoredataMappable, CoredataFetcher, CoredataCleanable, CoredataDeletable {
+public protocol CoredataProviderProtocol: CoredataMappable, CoredataFetcher, CoredataCleanable, CoredataDeletable { }
+
+public class CoredataProvider: CoredataProviderProtocol {
   let dataStack: DATAStack
   let serialOperationQueue: OperationQueue = {
     let queue = OperationQueue()
@@ -134,8 +136,8 @@ public extension CoredataMappable where Self: CoredataProvider {
     return mapArray(type, jsonArray: [json])
   }
 
-  func mapAndReturnObject<T: NSManagedObjectMappable, ReturnType: Mappable>
-    (_ type: T.Type, returnType: ReturnType.Type, json: JSONDictionary) -> Observable<ReturnType> {
+  func mapAndReturnObject<T: NSManagedObjectMappable & NSManagedObjectExportable, ReturnType: Mappable>
+    (_ type: T.Type, returnType: ReturnType.Type, json: JSONDictionary) -> Observable<ReturnType>  where T: NSManagedObject {
     return mapAndReturnArray(type, returnType: returnType, jsonArray: [json])
       .flatMap({ objects -> Observable<ReturnType> in
         if let first = objects.first {
@@ -146,8 +148,8 @@ public extension CoredataMappable where Self: CoredataProvider {
       })
   }
   
-  func mapAndReturnArray <T: NSManagedObjectMappable, ReturnType: Mappable>
-    (_ type: T.Type, returnType: ReturnType.Type, jsonArray: JSONArrayDictionary) -> Observable<[ReturnType]>
+  func mapAndReturnArray <T: NSManagedObjectMappable & NSManagedObjectExportable, ReturnType: Mappable>
+    (_ type: T.Type, returnType: ReturnType.Type, jsonArray: JSONArrayDictionary) -> Observable<[ReturnType]> where T: NSManagedObject
   {
     return Observable<[ReturnType]>.create({ [weak self] observer -> Disposable in
       
@@ -160,13 +162,13 @@ public extension CoredataMappable where Self: CoredataProvider {
       let op = EditOperation(action: { context -> Observable<Void> in
         return Observable<Void>.just(())
           .map({ _ -> [T] in
-            let mapper = EntityMapper<T>(context: context)
-            let entities = try mapper.mapArray(objects: jsonArray)
+            let entities = try context.mapArray(type: T.self, from: jsonArray)
             return entities
           })
           .do(onNext: { entities in
+            let entityExporter = EntityExporter()
             try models = entities.map { entity in
-              let json = entity.toJSON()
+              let json = entityExporter.toJSON(entity)
               if let model = Mapper<ReturnType>().map(JSON: json) {
                 return model
               } else {
@@ -202,8 +204,7 @@ public extension CoredataMappable where Self: CoredataProvider {
       let op = EditOperation(action: { context -> Observable<Void> in
         return Observable<Void>.just(())
           .map({ _ -> [T] in
-            let mapper = EntityMapper<T>(context: context)
-            let entities = try mapper.mapArray(objects: jsonArray)
+            let entities = try context.mapArray(type: T.self, from: jsonArray)
             return entities
           }).mapToVoid()
       }, dataStack: stack)
@@ -252,78 +253,65 @@ public extension CoredataFetcher where Self: CoredataProvider {
     return dataStack.mainContext
   }
   
-  func models<T: Mappable, U: NSManagedObject>(type: U.Type, predicate: NSPredicate, sortBy: String?, asc: Bool?) -> [T]? {
-    do {
-      let entityName = String(describing: type.self)
-      let fetchRequest : NSFetchRequest<U> = NSFetchRequest(entityName: entityName)
-      fetchRequest.predicate = predicate
-      
-      if let sortField = sortBy {
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: sortField, ascending: asc ?? true)]
+  func models<T: Mappable, U: NSManagedObject & NSManagedObjectExportable>(type: U.Type, predicate: NSPredicate, sortBy: String?, asc: Bool?) throws -> [T] {
+    let entityName = String(describing: type.self)
+    let fetchRequest : NSFetchRequest<U> = NSFetchRequest(entityName: entityName)
+    fetchRequest.predicate = predicate
+    if let sortField = sortBy {
+      fetchRequest.sortDescriptors = [NSSortDescriptor(key: sortField, ascending: asc ?? true)]
+    }
+    let fetchedResults = try mainContext().fetch(fetchRequest)
+    let entityExporter = EntityExporter()
+    return fetchedResults.compactMap { model -> T? in
+      let json = entityExporter.toJSON(model)
+      if let obj: T = Mapper<T>().map(JSON: json) {
+        return obj
+      } else {
+        return nil
       }
-      
-      let fetchedResults = try mainContext().fetch(fetchRequest)
-      
-      return fetchedResults.compactMap { model -> T? in
-        let json = model.toJSON()
-        if let obj: T = Mapper<T>().map(JSON: json) {
-          return obj
-        } else {
-          return nil
-        }
-      }
-    } catch {
-      return nil
     }
   }
   
-  func firstModel<T: Mappable, U: NSManagedObject>(type: U.Type, predicate: NSPredicate) -> T? {
-    do {
-      let entityName = String(describing: type.self)
-      let fetchRequest : NSFetchRequest<U> = NSFetchRequest(entityName: entityName)
-      
-      fetchRequest.predicate = predicate
-      let fetchedResults = try mainContext().fetch(fetchRequest)
-
-      return fetchedResults.compactMap { model -> T? in
-        let json = model.toJSON()
-        if let obj: T = Mapper<T>().map(JSON: json) {
-          return obj
-        } else {
-          return nil
-        }
+  func firstModel<T: Mappable, U: NSManagedObject & NSManagedObjectExportable>(type: U.Type, predicate: NSPredicate) throws -> T? {
+    let entityName = String(describing: type.self)
+    let fetchRequest : NSFetchRequest<U> = NSFetchRequest(entityName: entityName)
+    
+    fetchRequest.predicate = predicate
+    let fetchedResults = try mainContext().fetch(fetchRequest)
+    
+    let entityExporter = EntityExporter()
+    return fetchedResults.compactMap { model -> T? in
+      let json = entityExporter.toJSON(model)
+      if let obj: T = Mapper<T>().map(JSON: json) {
+        return obj
+      } else {
+        return nil
+      }
       }.first
-    } catch {
-      return nil
-    }
   }
   
-  func objects<T: NSManagedObject>(type: T.Type, predicate: NSPredicate, sortBy: String?, asc: Bool?) -> [T]? {
-    do {
-      let entityName = String(describing: type.self)
-      let fetchRequest : NSFetchRequest<T> = NSFetchRequest(entityName: entityName)
-      fetchRequest.predicate = predicate
-      
-      if let sortField = sortBy {
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: sortField, ascending: asc ?? true)]
-      }
-      
-      return try mainContext().fetch(fetchRequest)
-    } catch {
-      return nil
+  func objects<T: NSManagedObject>(type: T.Type, predicate: NSPredicate, sortBy: String?, asc: Bool?) throws -> [T] {
+    let entityName = String(describing: type.self)
+    let fetchRequest : NSFetchRequest<T> = NSFetchRequest(entityName: entityName)
+    fetchRequest.predicate = predicate
+    
+    if let sortField = sortBy {
+      fetchRequest.sortDescriptors = [NSSortDescriptor(key: sortField, ascending: asc ?? true)]
     }
+    
+    return try mainContext().fetch(fetchRequest)
   }
   
-  func firstObject<T: NSManagedObject>(type: T.Type, predicate: NSPredicate) -> T? {
-    do {
+  func firstObject<T: NSManagedObject>(type: T.Type, predicate: NSPredicate) throws -> T? {
+//    do {
       let entityName = String(describing: type.self)
       let fetchRequest : NSFetchRequest<T> = NSFetchRequest(entityName: entityName)
       fetchRequest.predicate = predicate
       
       return try mainContext().fetch(fetchRequest).first
-    } catch {
-      return nil
-    }
+//    } catch {
+//      return nil
+//    }
   }
 }
 
