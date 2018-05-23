@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name                  = "ALUtils"
-    s.version               = "0.1.2"
+    s.version               = "0.2"
     s.summary               = "Database utils for Coredata"
     s.description           = <<-DESC
     Database utils for Coredata
