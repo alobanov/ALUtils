@@ -57,7 +57,7 @@ public protocol CoredataFetcher {
   func models<T: Mappable, U: NSManagedObject>(type: U.Type, predicate: NSPredicate, sortBy: String?, asc: Bool?) -> [T]?
   func firstModel<T: Mappable, U: NSManagedObject>(type: U.Type, predicate: NSPredicate) -> T?
   
-  func objects<T: NSManagedObject>(type: T.Type, predicate: NSPredicate, sortBy: String?, asc: Bool?) -> [T]?
+  func objects<T: NSManagedObject>(type: T.Type, predicate: NSPredicate, sortBy: String?, asc: Bool?, context: NSManagedObjectContext?) -> [T]?
   func firstObject<T: NSManagedObject>(type: T.Type, predicate: NSPredicate) -> T?
   
   func mainContext() -> NSManagedObjectContext
@@ -298,7 +298,7 @@ public extension CoredataFetcher where Self: CoredataProvider {
     }
   }
   
-  func objects<T: NSManagedObject>(type: T.Type, predicate: NSPredicate, sortBy: String?, asc: Bool?) -> [T]? {
+  func objects<T: NSManagedObject>(type: T.Type, predicate: NSPredicate, sortBy: String?, asc: Bool?, context: NSManagedObjectContext?) -> [T]? {
     do {
       let entityName = String(describing: type.self)
       let fetchRequest : NSFetchRequest<T> = NSFetchRequest(entityName: entityName)
@@ -308,7 +308,11 @@ public extension CoredataFetcher where Self: CoredataProvider {
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: sortField, ascending: asc ?? true)]
       }
       
-      return try mainContext().fetch(fetchRequest)
+      if let context = context {
+        return try context.fetch(fetchRequest)
+      } else {
+        return try mainContext().fetch(fetchRequest)
+      }
     } catch {
       return nil
     }
