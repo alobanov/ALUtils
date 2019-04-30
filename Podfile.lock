@@ -1,28 +1,47 @@
 PODS:
   - DATAStack (8.0.2)
+  - Differentiator (4.0.0)
   - ObjectMapper (3.4.2)
+  - RxCocoa (5.0.0):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxDataSources (4.0.0):
+    - Differentiator (~> 4.0)
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
+  - RxRelay (5.0.0):
+    - RxSwift (~> 5)
   - RxSwift (5.0.0)
   - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
   - DATAStack
   - ObjectMapper
+  - RxDataSources
   - RxSwift
   - SwiftyJSON
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - DATAStack
+    - Differentiator
     - ObjectMapper
+    - RxCocoa
+    - RxDataSources
+    - RxRelay
     - RxSwift
     - SwiftyJSON
 
 SPEC CHECKSUMS:
   DATAStack: 9c415f6e7733eafb9cf5c076613bfb5958c407cb
+  Differentiator: a515b6812bdbd6b377c93fa5d7023fcde66b23d7
   ObjectMapper: 0d4402610f4e468903ae64629eec4784531e5c51
+  RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
+  RxDataSources: 38b21b38b9fe646d3bf2641f1720efa05ef1add5
+  RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 1b7ddcb411bdce1c868f941c2d8172acce5fe234
+PODFILE CHECKSUM: 17b0f4dc269350260106fdb4ba96b53d90d8633b
 
 COCOAPODS: 1.5.3

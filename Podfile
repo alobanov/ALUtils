@@ -8,6 +8,7 @@ pod 'DATAStack'
 pod 'RxSwift'
 pod 'ObjectMapper'
 pod 'SwiftyJSON'
+pod 'RxDataSources'
 end
 
 post_install do |installer|
