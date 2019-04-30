@@ -1,6 +1,6 @@
 use_frameworks!
 inhibit_all_warnings!
-platform :ios, '9.0'
+platform :ios, '11.0'
 
 target 'EntitySerialization' do
 #pod 'DBUtils', :path => '.'

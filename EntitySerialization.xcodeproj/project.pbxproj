@@ -387,7 +387,6 @@
 				E804E22A1FBEB086007F7DF2 /* Frameworks */,
 				E804E22B1FBEB086007F7DF2 /* Resources */,
 				0263F716FEF727B3449B3648 /* [CP] Embed Pods Frameworks */,
-				12B17B35FB14E14747708D41 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -499,21 +498,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EntitySerialization/Pods-EntitySerialization-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		12B17B35FB14E14747708D41 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EntitySerialization/Pods-EntitySerialization-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8A1402A78AF2305C7E43BCBF /* [CP] Check Pods Manifest.lock */ = {
