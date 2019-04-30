@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name                  = "ALUtils"
-    s.version               = "0.2"
+    s.version               = "0.3"
     s.summary               = "Database utils for Coredata"
     s.description           = <<-DESC
     Database utils for Coredata
@@ -28,9 +28,9 @@ Pod::Spec.new do |s|
 
   s.subspec "Utils" do |ss|
     ss.source_files = "Sources/usefull/**/*.swift"
-    ss.dependency 'RxSwift'
-    ss.dependency 'SwiftyJSON'
-    ss.dependency 'ObjectMapper'
+    ss.dependency 'RxSwift', '5.0.0'
+    ss.dependency 'SwiftyJSON', '5.0.0'
+    ss.dependency 'ObjectMapper' '3.4.2'
   end
 
   s.subspec "RxCoredataProvider" do |ss|
