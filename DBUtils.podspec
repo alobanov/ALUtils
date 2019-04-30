@@ -30,7 +30,7 @@ Pod::Spec.new do |s|
     ss.source_files = "Sources/usefull/**/*.swift"
     ss.dependency 'RxSwift', '5.0.0'
     ss.dependency 'SwiftyJSON', '5.0.0'
-    ss.dependency 'ObjectMapper' '3.4.2'
+    ss.dependency 'ObjectMapper', '3.4.2'
   end
 
   s.subspec "RxCoredataProvider" do |ss|
