@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
     s.source                = { :git => "https://github.com/alobanov/ALUtils.git", :tag => s.version.to_s }
     s.social_media_url      = "https://twitter.com/alobanov"
 
-    s.ios.deployment_target = '11'
+    s.ios.deployment_target = '11.3'
 
     s.default_subspec = "DBUtils"
     s.source_files = 'Sources/dbutils/**/*.swift'
