@@ -323,6 +323,7 @@ public extension CoredataFetcher where Self: CoredataProvider {
     do {
       let entityName = String(describing: type.self)
       let fetchRequest : NSFetchRequest<T> = NSFetchRequest(entityName: entityName)
+      fetchRequest.fetchLimit = 1
       fetchRequest.predicate = predicate
       
       return try mainContext().fetch(fetchRequest).first
