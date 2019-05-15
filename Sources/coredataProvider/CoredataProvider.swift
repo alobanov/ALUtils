@@ -55,7 +55,7 @@ public protocol CoredataDeletable {
 
 public protocol CoredataFetcher {
   func models<T: Mappable, U: NSManagedObject>(type: U.Type, predicate: NSPredicate, sortBy: String?, asc: Bool?) -> [T]?
-  func firstModel<T: Mappable, U: NSManagedObject>(type: U.Type, predicate: NSPredicate) -> T?
+  func firstModel<T: Mappable, U: NSManagedObject>(type: U.Type, predicate: NSPredicate, sortBy: String?, asc: Bool?) -> T?
   
   func objects<T: NSManagedObject>(type: T.Type, predicate: NSPredicate, sortBy: String?, asc: Bool?, context: NSManagedObjectContext?) -> [T]?
   func firstObject<T: NSManagedObject>(type: T.Type, predicate: NSPredicate) -> T?
@@ -277,13 +277,17 @@ public extension CoredataFetcher where Self: CoredataProvider {
     }
   }
   
-  func firstModel<T: Mappable, U: NSManagedObject>(type: U.Type, predicate: NSPredicate) -> T? {
+  func firstModel<T: Mappable, U: NSManagedObject>(type: U.Type, predicate: NSPredicate, sortBy: String?, asc: Bool?) -> T? {
     do {
       let entityName = String(describing: type.self)
       let fetchRequest : NSFetchRequest<U> = NSFetchRequest(entityName: entityName)
       fetchRequest.fetchLimit = 1
-      
       fetchRequest.predicate = predicate
+      
+      if let sortField = sortBy {
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: sortField, ascending: asc ?? true)]
+      }
+      
       let fetchedResults = try mainContext().fetch(fetchRequest)
 
       return fetchedResults.compactMap { model -> T? in
